@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Footer from "./components/Footer/Footer";
+import Header from "./components/header/Header";
 
 const App: React.FC = () => {
   return (
     <Router>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/" element={<Home />} />
