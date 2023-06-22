@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-// import GetStartedForm from "../../components/forms/GetStartedForm";
-import ContactForm from "../../components/forms/ContactForm";
+import GetStartedForm from "../../components/forms/GetStartedForm";
 
 const Home: React.FC = () => {
   return (
@@ -12,8 +11,7 @@ const Home: React.FC = () => {
       <Typography variant="body1" align="center">
         Your journey to knowledge begins here.
       </Typography>
-      {/* <GetStartedForm /> */}
-      <ContactForm/>
+      <GetStartedForm />
     </Container>
   );
 }

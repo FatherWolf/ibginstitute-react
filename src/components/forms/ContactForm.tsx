@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, TextField, Button, Typography, Grid, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox } from '@mui/material';
+import { Box, TextField, Button, Typography, Grid, FormControlLabel, Checkbox } from '@mui/material';
 
 
 interface FormState {
@@ -33,7 +33,7 @@ const ContactForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!values.name || !values.email ) {
+    if (!values.name || !values.email) {
       // Handle the validation error here, e.g., set an error message state
       console.log('Please fill out the required information');
       return;
@@ -46,38 +46,23 @@ const ContactForm: React.FC = () => {
   // repeated styling for inputs for name, email address, phone number
   const BottomBorderTextField = (props: any) => (
     <TextField
-      variant="outlined"
-      sx={{
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            border: 'none',
-            borderBottom: '1px solid',
-            borderRadius: 0,
-          },
-          "&:hover fieldset": {
-            borderBottom: '2px solid',
-          },
-          "&.Mui-focused fieldset": {
-            borderBottom: '2px solid',
-          },
-        },
-      }}
+      variant="standard"
+      margin="normal"
+      fullWidth
       {...props}
     />
   )
 
   return (
-    <Box sx={{ maxWidth: '75%', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
+    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center', backgroundColor: 'lightgrey', p: 2 }}>
+        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center' }}>
           Contact Us
         </Typography>
         <Grid container spacing={2}>
-        <Grid item xs={12}>
+          <Grid item xs={12}>
             <BottomBorderTextField
-              margin="normal"
               required
-              fullWidth
               id="name"
               label="Full Name"
               name="name"
@@ -87,9 +72,7 @@ const ContactForm: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <BottomBorderTextField
-              margin="normal"
               required
-              fullWidth
               id="email"
               label="Email Address"
               name="email"
@@ -99,7 +82,6 @@ const ContactForm: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <BottomBorderTextField
-              fullWidth
               id="phone"
               label="Phone Number"
               name="phone"
@@ -107,18 +89,18 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
             />
           </Grid>
-         <Grid item xs={12}>
-          <TextField
-          fullWidth
-          id="message"
-          label="Message"
-          multiline
-          rows={4}
-          // defaultValue="Write your message here"
-          variant="standard"
-        />
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              id="message"
+              label="Message"
+              multiline
+              rows={4}
+              // defaultValue="Write your message here"
+              variant="standard"
+            />
           </Grid>
-          
+
           <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox color="primary" checked={values.acceptTerms} name="acceptTerms" onChange={handleCheck} />}
