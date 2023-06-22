@@ -65,38 +65,23 @@ const GetStartedForm: React.FC = () => {
   // repeated styling for inputs for name, email address, phone number
   const BottomBorderTextField = (props: any) => (
     <TextField
-      variant="outlined"
-      sx={{
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            border: 'none',
-            borderBottom: '1px solid',
-            borderRadius: 0,
-          },
-          "&:hover fieldset": {
-            borderBottom: '2px solid',
-          },
-          "&.Mui-focused fieldset": {
-            borderBottom: '2px solid',
-          },
-        },
-      }}
+      variant="standard"
+      margin="normal"
+      fullWidth
       {...props}
     />
   )
 
   return (
-    <Box sx={{ maxWidth: '75%', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
+    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center', backgroundColor: 'lightgrey', p: 2 }}>
+        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center'}}>
           Get Started
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <BottomBorderTextField
-              margin="normal"
               required
-              fullWidth
               id="firstName"
               label="First Name"
               name="firstName"
@@ -107,9 +92,7 @@ const GetStartedForm: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <BottomBorderTextField
-              margin="normal"
               required
-              fullWidth
               id="lastName"
               label="Last Name"
               name="lastName"
@@ -120,9 +103,7 @@ const GetStartedForm: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <BottomBorderTextField
-              margin="normal"
               required
-              fullWidth
               id="email"
               label="Email Address"
               name="email"
@@ -132,7 +113,6 @@ const GetStartedForm: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <BottomBorderTextField
-              fullWidth
               id="phone"
               label="Phone Number"
               name="phone"
