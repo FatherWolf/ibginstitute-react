@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import GetStartedForm from "../../components/forms/GetStartedForm";
+import GetStartedForm from "../../components/forms/getStartedForm/GetStartedForm";
 
 const Home: React.FC = () => {
   return (
