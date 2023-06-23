@@ -23,7 +23,7 @@ const Step2: React.FC<Step2Props> = ({ onBack, onNext }) => {
   };
 
   return (
-    <Grid container spacing={2} mb={5}>
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">IBG Institute Courses:</Typography>
         <Typography variant="body1" align="center">Crash Course - 8 week program</Typography>

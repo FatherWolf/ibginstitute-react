@@ -24,7 +24,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
   const canContinue = firstName && lastName && email;
 
   return (
-    <Grid container spacing={2} mb={5}>
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} sm={6}>
         <BottomBorderTextField
           required

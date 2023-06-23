@@ -30,7 +30,7 @@ const Step3: React.FC<Step3Props> = ({ onBack, onNext }) => {
   };
 
   return (
-    <Grid container spacing={2} mb={5}>
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">Where are you from?</Typography>
       </Grid>

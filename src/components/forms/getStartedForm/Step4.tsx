@@ -31,7 +31,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
 
 
   return (
-    <Grid container spacing={2} mb={5}>
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">How did you hear about us?</Typography>
       </Grid>

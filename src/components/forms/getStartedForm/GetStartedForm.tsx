@@ -25,7 +25,7 @@ const GetStartedForm: React.FC = () => {
   };
 
   return (
-    <Box maxWidth={400}>
+    <Box sx={{ maxWidth: '400px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
         Get Started
       </Typography>
