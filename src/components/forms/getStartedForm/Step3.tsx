@@ -12,12 +12,12 @@ import {
 
 import { countries, states } from '../../../constants';
 
-interface Step2Props {
+interface Step3Props {
   onBack: () => void;
   onNext: () => void;
 }
 
-const Step2: React.FC<Step2Props> = ({ onBack, onNext }) => {
+const Step3: React.FC<Step3Props> = ({ onBack, onNext }) => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
 
@@ -84,4 +84,4 @@ const Step2: React.FC<Step2Props> = ({ onBack, onNext }) => {
   );
 }
 
-export default Step2;
+export default Step3;
