@@ -17,7 +17,7 @@ const GetStartedForm: React.FC = () => {
 
   return (
     <Box maxWidth={400}>
-      <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center' }}>
+      <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
         Get Started
       </Typography>
       <Stepper activeStep={activeStep}>
