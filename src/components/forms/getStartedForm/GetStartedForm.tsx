@@ -19,13 +19,13 @@ const GetStartedForm: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  // add logic when submit form
+  // Add logic when submit form
   const handleSubmit = () => {
     console.log('form submitted');
   };
 
   return (
-    <Box maxWidth={400}>
+    <Box maxWidth={400} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', p: 2 }}>
       <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
         Get Started
       </Typography>
