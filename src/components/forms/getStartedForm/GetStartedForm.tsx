@@ -15,6 +15,10 @@ const GetStartedForm: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
   return (
     <Box maxWidth={400}>
       <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
@@ -31,7 +35,7 @@ const GetStartedForm: React.FC = () => {
       </Stepper>
 
       {activeStep === 0 && <Step1 onNext={handleNext} />}
-      {activeStep === 1 && <Step2 onNext={handleNext} />}
+      {activeStep === 1 && <Step2 onNext={handleNext} onBack={handleBack} />}
       {activeStep === 2 && <Step3 onNext={handleNext} />}
       {activeStep === 3 && <Step4 onNext={handleNext} />}
     </Box>
