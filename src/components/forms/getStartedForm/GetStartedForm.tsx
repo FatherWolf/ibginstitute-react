@@ -36,7 +36,7 @@ const GetStartedForm: React.FC = () => {
 
       {activeStep === 0 && <Step1 onNext={handleNext} />}
       {activeStep === 1 && <Step2 onNext={handleNext} onBack={handleBack} />}
-      {activeStep === 2 && <Step3 onNext={handleNext} />}
+      {activeStep === 2 && <Step3 onNext={handleNext} onBack={handleBack} />}
       {activeStep === 3 && <Step4 onNext={handleNext} />}
     </Box>
   );
