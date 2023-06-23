@@ -14,6 +14,16 @@ interface FormState {
   acceptTerms: boolean;
 }
 
+// repeated styling for inputs for name, email address, phone number
+const BottomBorderTextField = (props: any) => (
+  <TextField
+    variant="standard"
+    margin="normal"
+    fullWidth
+    {...props}
+  />
+)
+
 const GetStartedForm: React.FC = () => {
   const [values, setValues] = React.useState<FormState>({
     firstName: '',
@@ -62,20 +72,11 @@ const GetStartedForm: React.FC = () => {
     console.log('form values: ', values);
   };
 
-  // repeated styling for inputs for name, email address, phone number
-  const BottomBorderTextField = (props: any) => (
-    <TextField
-      variant="standard"
-      margin="normal"
-      fullWidth
-      {...props}
-    />
-  )
 
   return (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center'}}>
+        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center' }}>
           Get Started
         </Typography>
         <Grid container spacing={2}>
@@ -85,7 +86,6 @@ const GetStartedForm: React.FC = () => {
               id="firstName"
               label="First Name"
               name="firstName"
-              autoFocus
               value={values.firstName}
               onChange={handleChange}
             />
@@ -96,7 +96,6 @@ const GetStartedForm: React.FC = () => {
               id="lastName"
               label="Last Name"
               name="lastName"
-              autoFocus
               value={values.lastName}
               onChange={handleChange}
             />
