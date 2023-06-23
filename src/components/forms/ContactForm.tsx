@@ -9,6 +9,16 @@ interface FormState {
   acceptTerms: boolean;
 }
 
+  // repeated styling for inputs for name, email address, phone number
+  const BottomBorderTextField = (props: any) => (
+    <TextField
+      variant="standard"
+      margin="normal"
+      fullWidth
+      {...props}
+    />
+  )
+  
 const ContactForm: React.FC = () => {
   const [values, setValues] = React.useState<FormState>({
     name: '',
@@ -43,15 +53,6 @@ const ContactForm: React.FC = () => {
     console.log('form values: ', values);
   };
 
-  // repeated styling for inputs for name, email address, phone number
-  const BottomBorderTextField = (props: any) => (
-    <TextField
-      variant="standard"
-      margin="normal"
-      fullWidth
-      {...props}
-    />
-  )
 
   return (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
