@@ -19,6 +19,11 @@ const GetStartedForm: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // add logic when submit form
+  const handleSubmit = () => {
+    console.log('form submitted');
+  };
+
   return (
     <Box maxWidth={400}>
       <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
@@ -37,7 +42,7 @@ const GetStartedForm: React.FC = () => {
       {activeStep === 0 && <Step1 onNext={handleNext} />}
       {activeStep === 1 && <Step2 onNext={handleNext} onBack={handleBack} />}
       {activeStep === 2 && <Step3 onNext={handleNext} onBack={handleBack} />}
-      {activeStep === 3 && <Step4 onNext={handleNext} />}
+      {activeStep === 3 && <Step4 onBack={handleBack} onSubmit={handleSubmit} />}
     </Box>
   );
 }
