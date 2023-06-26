@@ -7,24 +7,41 @@ interface FormState {
   email: string;
   phone: string;
   acceptTerms: boolean;
+  message: string;
+}
+interface ErrorState {
+  name: string;
+  email: string;
+  phone: string;
+  acceptTerms: string;
+  message: string;
 }
 
-  // repeated styling for inputs for name, email address, phone number
-  const BottomBorderTextField = (props: any) => (
-    <TextField
-      variant="standard"
-      margin="normal"
-      fullWidth
-      {...props}
-    />
-  )
-  
+// repeated styling for inputs for name, email address, phone number
+const BottomBorderTextField = (props: any) => (
+  <TextField
+    variant="standard"
+    margin="normal"
+    fullWidth
+    {...props}
+  />
+)
+
 const ContactForm: React.FC = () => {
   const [values, setValues] = React.useState<FormState>({
     name: '',
     email: '',
     phone: '',
     acceptTerms: false,
+    message: '',
+  });
+
+  const [errors, setErrors] = React.useState<ErrorState>({
+    name: '',
+    email: '',
+    phone: '',
+    acceptTerms: '',
+    message: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,25 +51,42 @@ const ContactForm: React.FC = () => {
     });
   };
 
-
-  // handles state change for checkbox to agree to terms
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.checked });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    let tempErrors = { ...errors };
+    let hasError = false;
 
-    if (!values.name || !values.email) {
-      // Handle the validation error here, e.g., set an error message state
-      console.log('Please fill out the required information');
-      return;
+    if (!values.name) {
+      tempErrors.name = 'Full Name is required';
+      hasError = true;
     }
+
+    if (!values.email) {
+      tempErrors.email = 'Email Address is required';
+      hasError = true;
+    }
+
+    if (!values.acceptTerms) {
+      tempErrors.acceptTerms = 'You must accept the terms to proceed';
+      hasError = true;
+    }
+
+    if (!values.message) {
+      tempErrors.message = 'Message is required';
+      hasError = true;
+    }
+
+    setErrors(tempErrors);
+
+    if (hasError) return;
 
     // Handle the form submission here 
     console.log('form values: ', values);
   };
-
 
   return (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
@@ -69,6 +103,8 @@ const ContactForm: React.FC = () => {
               name="name"
               value={values.name}
               onChange={handleChange}
+              error={Boolean(errors.name)}
+              helperText={errors.name}
             />
           </Grid>
           <Grid item xs={12}>
@@ -79,6 +115,8 @@ const ContactForm: React.FC = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
+              error={Boolean(errors.email)}
+              helperText={errors.email}
             />
           </Grid>
           <Grid item xs={12}>
@@ -93,20 +131,25 @@ const ContactForm: React.FC = () => {
           <Grid item xs={12}>
             <TextField
               fullWidth
+              required
               id="message"
               label="Message"
+              name="message"
+              value={values.message}
+              onChange={handleChange}
               multiline
               rows={4}
-              // defaultValue="Write your message here"
               variant="standard"
+              error={Boolean(errors.message)}
+              helperText={errors.message}
             />
           </Grid>
-
           <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox color="primary" checked={values.acceptTerms} name="acceptTerms" onChange={handleCheck} />}
               label="I agree. By checking this box, you are opting-in to receive information from IBG Institute. You also agree to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida arcu sagittis erat posuere, et efficitur quam vestibulum. Ut iaculis vitae nibh eget congue."
             />
+            {errors.acceptTerms && <Typography textAlign="center" color="error">{errors.acceptTerms}</Typography>}
           </Grid>
 
           <Button
