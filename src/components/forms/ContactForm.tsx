@@ -64,24 +64,32 @@ const ContactForm: React.FC = () => {
       tempErrors.name = 'Full Name is required';
       hasError = true;
     }
-
+    // regex for email validation
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if (!values.email) {
       tempErrors.email = 'Email Address is required';
       hasError = true;
+    } else if (!emailRegex.test(values.email)) {
+      tempErrors.email = 'Please provide a valid email address';
+      hasError = true;
     }
+    // regex for US phone number validation, e.g. (123) 456-7890
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
+    if (values.phone && !phoneRegex.test(values.phone)) {
+      tempErrors.phone = 'Please provide a valid phone number';
+      hasError = true;
+    }
+    if (!values.message) {
+      tempErrors.message = 'Message is required';
+      hasError = true;
+    }
     if (!values.acceptTerms) {
       tempErrors.acceptTerms = 'You must accept the terms to proceed';
       hasError = true;
     }
 
-    if (!values.message) {
-      tempErrors.message = 'Message is required';
-      hasError = true;
-    }
-
     setErrors(tempErrors);
-
     if (hasError) return;
 
     // Handle the form submission here 
@@ -144,6 +152,8 @@ const ContactForm: React.FC = () => {
               name="phone"
               value={values.phone}
               onChange={handleChange}
+              error={Boolean(errors.phone)}
+              helperText={errors.phone}
             />
           </Grid>
           <Grid item xs={12}>
