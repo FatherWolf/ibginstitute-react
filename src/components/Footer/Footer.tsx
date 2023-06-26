@@ -1,73 +1,57 @@
-import React, { useState, useCallback } from 'react';
-import { Box, Typography, Button, TextField } from '@mui/material';
+import * as React from 'react';
+import { Box, Typography, Button, TextField, IconButton } from '@mui/material';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+
+const footerStyles = {
+  backgroundColor: 'grey',
+  color: 'white',
+  textAlign: 'center',
+  padding: '2rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+};
 
 const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [referralType, setReferralType] = useState('');
-
-  const handleEmailChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  }, []);
-
-  const handleReferralTypeChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setReferralType(event.target.value);
-  }, []);
-
-  const handleSubmit = useCallback(() => {
-    console.log('Email:', email);
-    console.log('Referral Type:', referralType);
-
-    // Perform form submission logic here
-    // You can use the 'email' and 'referralType' states to access the user input
-
-    // Display success message
-    console.log('Form submitted successfully!');
-  }, [email, referralType]);
+  // Function for opening social media links
+  const handleSocialMediaIconClick = (url: string) => {
+    window.open(url, "_blank");
+  };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'grey',
-        color: 'whitesmoke',
-        textAlign: 'center',
-        padding: '0.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start'
-      }}
-    >
-      <Typography variant="body1">
-        Charlotte Office <br />
-        333 W. Trade St. Charlotte, NC 20202 <br />
-        IBG Consulting <br />
-        All rights Reserved 2020-2023
-      </Typography>
-      <Box sx={{ marginLeft: '1rem', marginTop: '1rem' }}>
-        <TextField
-          label="Email"
-          variant="outlined"
-          size="small"
-          value={email}
-          onChange={handleEmailChange}
-          sx={{ marginRight: '1rem' }}
-        />
-        <TextField
-          label="Name"
-          variant="outlined"
-          size="small"
-          value={referralType}
-          onChange={handleReferralTypeChange}
-          sx={{ marginRight: '1rem' }}
-        />
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+    <footer>
+      <Box sx={footerStyles}>
+        {/* Box for address and subscription elements on the left margin */}
+        <Box>
+          <Typography variant="body1">
+            Charlotte Office <br />
+            333 W. Trade St. Charlotte, NC 20202 <br />
+            IBG Consulting <br />
+            All rights Reserved 2020-2023
+          </Typography>
+          <Box sx={{ marginTop: '1rem' }}>
+            <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} />
+            <Button variant="contained" color="primary">
+              Subscribe
+            </Button>
+          </Box>
+        </Box>
+        {/* Created a Box for social media icons on the right margin */}
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <IconButton onClick={() => handleSocialMediaIconClick("https://facebook.com")}>
+            <Facebook />
+          </IconButton>
+          <IconButton onClick={() => handleSocialMediaIconClick("https://twitter.com")}>
+            <Twitter />
+          </IconButton>
+          <IconButton onClick={() => handleSocialMediaIconClick("https://instagram.com")}>
+            <Instagram />
+          </IconButton>
+          <IconButton onClick={() => handleSocialMediaIconClick("https://linkedin.com")}>
+            <LinkedIn />
+          </IconButton>
+        </Box>
       </Box>
-    </Box>
+    </footer>
   );
 };
 
