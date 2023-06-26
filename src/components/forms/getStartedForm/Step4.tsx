@@ -44,7 +44,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
     <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">Thank You!</Typography>
-        <Typography variant="subtitle1" align="center">Your form has been successfully submitted.</Typography>
+        <Typography variant="subtitle1" align="center">Your responses has been successfully submitted.</Typography>
       </Grid>
     </Grid>
   ) : (
