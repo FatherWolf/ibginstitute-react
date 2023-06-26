@@ -9,29 +9,52 @@ import {
   InputLabel,
   SelectChangeEvent,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  TextField
 } from '@mui/material';
 
 interface Step4Props {
   onBack: () => void;
+  updateFormState: (state: any) => void;
   onSubmit: () => void;
 }
 
-const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
+const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
   const [referral, setReferral] = useState('');
+  const [otherReferral, setOtherReferral] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleReferralChange = (event: SelectChangeEvent<string>) => {
     setReferral(event.target.value);
+  };
+
+  const handleOtherReferralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOtherReferral(event.target.value);
   };
 
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAcceptTerms(event.target.checked);
   };
 
+  const handleSubmit = () => {
+    updateFormState({
+      referral: referral === 'Other' ? otherReferral : referral,
+      acceptTerms,
+    });
+    onSubmit();
+    setIsSubmitted(true);
+  };
 
-  return (
-    <Grid container spacing={2} mb={5}>
+  return isSubmitted ? (
+    <Grid container spacing={2} mb={3}>
+      <Grid item xs={12} mt={3}>
+        <Typography variant="h6" align="center">Thank You!</Typography>
+        <Typography variant="subtitle1" align="center">Your responses has been successfully submitted.</Typography>
+      </Grid>
+    </Grid>
+  ) : (
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">How did you hear about us?</Typography>
       </Grid>
@@ -52,6 +75,15 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
             <MenuItem value={'Other'}>Other (please specify)</MenuItem>
           </Select>
         </FormControl>
+        {referral === 'Other' && (
+          <TextField
+            label="Please specify"
+            value={otherReferral}
+            onChange={handleOtherReferralChange}
+            fullWidth
+            variant="standard"
+          />
+        )}
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h6" align="center">Terms & Conditions</Typography>
@@ -66,7 +98,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>
-        <Button variant="contained" color="primary" disabled={!referral || !acceptTerms} onClick={onSubmit}>
+        <Button variant="contained" color="primary" disabled={!referral || !acceptTerms} onClick={handleSubmit}>
           SUBMIT
         </Button>
       </Grid>

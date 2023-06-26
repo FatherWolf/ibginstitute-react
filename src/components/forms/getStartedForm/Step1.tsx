@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { Button, TextField, Grid } from '@mui/material';
 
 interface Step1Props {
   onNext: () => void;
+  updateFormState: (state: any) => void;
 }
 
 // repeated styling for inputs for name, email address, phone number
@@ -15,16 +16,33 @@ const BottomBorderTextField = (props: any) => (
   />
 )
 
-const Step1: React.FC<Step1Props> = ({ onNext }) => {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+const Step1: React.FC<Step1Props> = ({ onNext, updateFormState }) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
 
-  // if fields are empty, users cannot continue to next step
-  const canContinue = firstName && lastName && email;
+
+  const isValidEmail = (email: string) => {
+    const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    return pattern.test(email);
+  }
+
+  const emailIsValid = isValidEmail(email);
+
+  // checks for empty fields and if email is valid
+  const canContinue = firstName && lastName && email && emailIsValid;
+
+  const handleClickNext = () => {
+    updateFormState({
+      firstName,
+      lastName,
+      email,
+    });
+    onNext();
+  };
 
   return (
-    <Grid container spacing={2} mb={5}>
+    <Grid container spacing={2} mb={3}>
       <Grid item xs={12} sm={6}>
         <BottomBorderTextField
           required
@@ -47,10 +65,12 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
           label="Email"
           value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          error={!emailIsValid && email !== ''}
+          helperText={!emailIsValid && email !== '' ? 'Please enter a valid email address.' : null}
         />
       </Grid>
       <Grid container item xs={12} justifyContent="center">
-        <Button variant="contained" color="primary" disabled={!canContinue} onClick={onNext}>
+        <Button variant="contained" color="primary" disabled={!canContinue} onClick={handleClickNext}>
           Next
         </Button>
       </Grid>
