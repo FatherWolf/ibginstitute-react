@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { Button, TextField, Grid } from '@mui/material';
 
 interface Step1Props {
@@ -17,9 +17,9 @@ const BottomBorderTextField = (props: any) => (
 )
 
 const Step1: React.FC<Step1Props> = ({ onNext, updateFormState }) => {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
 
 
   const isValidEmail = (email: string) => {

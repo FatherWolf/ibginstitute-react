@@ -21,6 +21,7 @@ interface Step4Props {
 const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
   const [referral, setReferral] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleReferralChange = (event: SelectChangeEvent<string>) => {
     setReferral(event.target.value);
@@ -36,9 +37,17 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
       acceptTerms,
     });
     onSubmit();
+    setIsSubmitted(true);
   };
 
-  return (
+  return isSubmitted ? (
+    <Grid container spacing={2} mb={3}>
+      <Grid item xs={12} mt={3}>
+        <Typography variant="h6" align="center">Thank You!</Typography>
+        <Typography variant="subtitle1" align="center">Your form has been successfully submitted.</Typography>
+      </Grid>
+    </Grid>
+  ) : (
     <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">How did you hear about us?</Typography>
