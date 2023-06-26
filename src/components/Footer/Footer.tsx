@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Typography, Button, TextField, IconButton } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 const footerStyles = {
@@ -29,10 +29,10 @@ const Footer: React.FC = () => {
             All rights Reserved 2020-2023
           </Typography>
           <Box sx={{ marginTop: '1rem' }}>
-            <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} />
-            <Button variant="contained" color="primary">
+            {/* <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} /> */}
+            {/* <Button variant="contained" color="primary">
               Subscribe
-            </Button>
+            </Button> */}
           </Box>
         </Box>
         {/* Created a Box for social media icons on the right margin */}
