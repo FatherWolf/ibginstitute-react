@@ -26,8 +26,10 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
     return pattern.test(email);
   }
 
+  const emailIsValid = isValidEmail(email);
+
   // checks for empty fields and if email is valid
-  const canContinue = firstName && lastName && email && isValidEmail(email);
+  const canContinue = firstName && lastName && email && emailIsValid;
 
   return (
     <Grid container spacing={2} mb={3}>
@@ -53,6 +55,8 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
           label="Email"
           value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          error={!emailIsValid && email !== ''}
+          helperText={!emailIsValid && email !== '' ? 'Please enter a valid email address.' : null}
         />
       </Grid>
       <Grid container item xs={12} justifyContent="center">
