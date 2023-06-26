@@ -20,8 +20,14 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
 
-  // if fields are empty, users cannot continue to next step
-  const canContinue = firstName && lastName && email;
+
+  const isValidEmail = (email: string) => {
+    const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    return pattern.test(email);
+  }
+
+  // checks for empty fields and if email is valid
+  const canContinue = firstName && lastName && email && isValidEmail(email);
 
   return (
     <Grid container spacing={2} mb={3}>
