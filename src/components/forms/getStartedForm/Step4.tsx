@@ -9,7 +9,8 @@ import {
   InputLabel,
   SelectChangeEvent,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  TextField
 } from '@mui/material';
 
 interface Step4Props {
@@ -20,11 +21,16 @@ interface Step4Props {
 
 const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
   const [referral, setReferral] = useState('');
+  const [otherReferral, setOtherReferral] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleReferralChange = (event: SelectChangeEvent<string>) => {
     setReferral(event.target.value);
+  };
+
+  const handleOtherReferralChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOtherReferral(event.target.value);
   };
 
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +39,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
 
   const handleSubmit = () => {
     updateFormState({
-      referral,
+      referral: referral === 'Other' ? otherReferral : referral,
       acceptTerms,
     });
     onSubmit();
@@ -69,6 +75,15 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
             <MenuItem value={'Other'}>Other (please specify)</MenuItem>
           </Select>
         </FormControl>
+        {referral === 'Other' && (
+          <TextField
+            label="Please specify"
+            value={otherReferral}
+            onChange={handleOtherReferralChange}
+            fullWidth
+            variant="standard"
+          />
+        )}
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h6" align="center">Terms & Conditions</Typography>
