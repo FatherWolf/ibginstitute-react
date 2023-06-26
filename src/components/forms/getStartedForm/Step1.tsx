@@ -3,6 +3,7 @@ import { Button, TextField, Grid } from '@mui/material';
 
 interface Step1Props {
   onNext: () => void;
+  updateFormState: (state: any) => void;
 }
 
 // repeated styling for inputs for name, email address, phone number
@@ -15,7 +16,7 @@ const BottomBorderTextField = (props: any) => (
   />
 )
 
-const Step1: React.FC<Step1Props> = ({ onNext }) => {
+const Step1: React.FC<Step1Props> = ({ onNext, updateFormState }) => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -30,6 +31,15 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
   // checks for empty fields and if email is valid
   const canContinue = firstName && lastName && email && emailIsValid;
+
+  const handleClickNext = () => {
+    updateFormState({
+      firstName,
+      lastName,
+      email,
+    });
+    onNext();
+  };
 
   return (
     <Grid container spacing={2} mb={3}>
@@ -60,7 +70,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
         />
       </Grid>
       <Grid container item xs={12} justifyContent="center">
-        <Button variant="contained" color="primary" disabled={!canContinue} onClick={onNext}>
+        <Button variant="contained" color="primary" disabled={!canContinue} onClick={handleClickNext}>
           Next
         </Button>
       </Grid>

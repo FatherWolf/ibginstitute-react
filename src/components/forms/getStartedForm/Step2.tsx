@@ -13,13 +13,21 @@ import {
 interface Step2Props {
   onBack: () => void;
   onNext: () => void;
+  updateFormState: (state: any) => void;
 }
 
-const Step2: React.FC<Step2Props> = ({ onBack, onNext }) => {
+const Step2: React.FC<Step2Props> = ({ onBack, onNext, updateFormState }) => {
   const [program, setProgram] = useState('');
 
   const handleProgramChange = (event: SelectChangeEvent<string>) => {
     setProgram(event.target.value);
+  };
+
+  const handleClickNext = () => {
+    updateFormState({
+      program,
+    });
+    onNext();
   };
 
   return (
@@ -49,7 +57,7 @@ const Step2: React.FC<Step2Props> = ({ onBack, onNext }) => {
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>
-        <Button variant="contained" color="primary" disabled={!program} onClick={onNext}>
+        <Button variant="contained" color="primary" disabled={!program} onClick={handleClickNext}>
           Next
         </Button>
       </Grid>

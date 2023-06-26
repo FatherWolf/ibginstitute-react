@@ -14,10 +14,11 @@ import {
 
 interface Step4Props {
   onBack: () => void;
+  updateFormState: (state: any) => void;
   onSubmit: () => void;
 }
 
-const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
+const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
   const [referral, setReferral] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
 
@@ -29,6 +30,13 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
     setAcceptTerms(event.target.checked);
   };
 
+  const handleSubmit = () => {
+    updateFormState({
+      referral,
+      acceptTerms,
+    });
+    onSubmit();
+  };
 
   return (
     <Grid container spacing={2} mb={3}>
@@ -66,7 +74,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit }) => {
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>
-        <Button variant="contained" color="primary" disabled={!referral || !acceptTerms} onClick={onSubmit}>
+        <Button variant="contained" color="primary" disabled={!referral || !acceptTerms} onClick={handleSubmit}>
           SUBMIT
         </Button>
       </Grid>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Stepper, Step, StepLabel, Box, Typography } from '@mui/material';
 
 import Step1 from './Step1';
@@ -10,6 +10,16 @@ const steps = ['Contact', 'Program', 'Location', 'Submit'];
 
 const GetStartedForm: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    program: '',
+    country: '',
+    state: '',
+    referral: '',
+    acceptTerms: false,
+  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -19,9 +29,15 @@ const GetStartedForm: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  // Add logic when submit form
+  const updateFormState = useCallback((state: any) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      ...state,
+    }));
+  }, []);
+
   const handleSubmit = () => {
-    console.log('form submitted');
+    console.log(formState);
   };
 
   return (
@@ -38,11 +54,10 @@ const GetStartedForm: React.FC = () => {
           </Step>
         ))}
       </Stepper>
-
-      {activeStep === 0 && <Step1 onNext={handleNext} />}
-      {activeStep === 1 && <Step2 onNext={handleNext} onBack={handleBack} />}
-      {activeStep === 2 && <Step3 onNext={handleNext} onBack={handleBack} />}
-      {activeStep === 3 && <Step4 onBack={handleBack} onSubmit={handleSubmit} />}
+      {activeStep === 0 && <Step1 onNext={handleNext} updateFormState={updateFormState} />}
+      {activeStep === 1 && <Step2 onNext={handleNext} onBack={handleBack} updateFormState={updateFormState} />}
+      {activeStep === 2 && <Step3 onNext={handleNext} onBack={handleBack} updateFormState={updateFormState} />}
+      {activeStep === 3 && <Step4 onBack={handleBack} onSubmit={handleSubmit} updateFormState={updateFormState} />}
     </Box>
   );
 }

@@ -15,9 +15,10 @@ import { countries, states } from '../../../constants';
 interface Step3Props {
   onBack: () => void;
   onNext: () => void;
+  updateFormState: (state: any) => void;
 }
 
-const Step3: React.FC<Step3Props> = ({ onBack, onNext }) => {
+const Step3: React.FC<Step3Props> = ({ onBack, onNext, updateFormState }) => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
 
@@ -28,6 +29,15 @@ const Step3: React.FC<Step3Props> = ({ onBack, onNext }) => {
   const handleStateChange = (event: SelectChangeEvent<string>) => {
     setState(event.target.value);
   };
+
+  const handleClickNext = () => {
+    updateFormState({
+      country,
+      state,
+    });
+    onNext();
+  };
+
 
   return (
     <Grid container spacing={2} mb={3}>
@@ -76,7 +86,7 @@ const Step3: React.FC<Step3Props> = ({ onBack, onNext }) => {
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>
-        <Button variant="contained" color="primary" disabled={!country || !state} onClick={onNext}>
+        <Button variant="contained" color="primary" disabled={!country || !state} onClick={handleClickNext}>
           Next
         </Button>
       </Grid>
