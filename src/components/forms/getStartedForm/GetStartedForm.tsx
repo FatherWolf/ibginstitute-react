@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Stepper, Step, StepLabel, Box, Typography } from '@mui/material';
 
 import Step1 from './Step1';
@@ -39,6 +39,11 @@ const GetStartedForm: React.FC = () => {
   const handleSubmit = () => {
     console.log(formState);
   };
+
+  // check latest render of inputs
+  useEffect(() => {
+    console.log("useEffect formState: ",formState);
+  }, [formState]);
 
   return (
     <Box maxWidth={400} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', p: 2 }}>
