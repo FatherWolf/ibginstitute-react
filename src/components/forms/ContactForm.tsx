@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, Grid, FormControlLabel, Checkbox } from '@mui/material';
 
 
@@ -28,7 +28,7 @@ const BottomBorderTextField = (props: any) => (
 )
 
 const ContactForm: React.FC = () => {
-  const [values, setValues] = React.useState<FormState>({
+  const [values, setValues] = useState<FormState>({
     name: '',
     email: '',
     phone: '',
@@ -36,13 +36,15 @@ const ContactForm: React.FC = () => {
     message: '',
   });
 
-  const [errors, setErrors] = React.useState<ErrorState>({
+  const [errors, setErrors] = useState<ErrorState>({
     name: '',
     email: '',
     phone: '',
     acceptTerms: '',
     message: '',
   });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -121,9 +123,18 @@ const ContactForm: React.FC = () => {
       acceptTerms: '',
       message: '',
     });
+
+    setIsSubmitted(true);
   };
 
-  return (
+  return isSubmitted ? (
+    <Grid container spacing={2} mb={3}>
+      <Grid item xs={12} mt={3}>
+        <Typography variant="h6" align="center">Thank You!</Typography>
+        <Typography variant="subtitle1" align="center">Your message has been successfully submitted.</Typography>
+      </Grid>
+    </Grid>
+  ) : (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center' }}>
