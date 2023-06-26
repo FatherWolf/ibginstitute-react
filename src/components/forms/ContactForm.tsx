@@ -49,10 +49,19 @@ const ContactForm: React.FC = () => {
       ...values,
       [e.target.name]: e.target.value,
     });
+
+    setErrors({
+      ...errors,
+      [e.target.name]: '',
+    });
   };
 
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [event.target.name]: event.target.checked });
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [e.target.name]: e.target.checked });
+    setErrors({
+      ...errors,
+      [e.target.name]: '',
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -77,7 +86,7 @@ const ContactForm: React.FC = () => {
     const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     if (values.phone && !phoneRegex.test(values.phone)) {
-      tempErrors.phone = 'Please provide a valid phone number';
+      tempErrors.phone = 'Please provide a valid phone eg. number xxx-xxx-xxxx';
       hasError = true;
     }
     if (!values.message) {
