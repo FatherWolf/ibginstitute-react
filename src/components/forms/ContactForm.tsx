@@ -86,6 +86,24 @@ const ContactForm: React.FC = () => {
 
     // Handle the form submission here 
     console.log('form values: ', values);
+
+    // reset form fields
+    setValues({
+      name: '',
+      email: '',
+      phone: '',
+      acceptTerms: false,
+      message: '',
+    });
+
+    // reset error messages
+    setErrors({
+      name: '',
+      email: '',
+      phone: '',
+      acceptTerms: '',
+      message: '',
+    });
   };
 
   return (
