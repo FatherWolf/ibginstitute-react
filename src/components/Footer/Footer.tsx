@@ -4,11 +4,11 @@ import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 const footerStyles = {
   backgroundColor: 'grey',
-  color: 'white',
-  textAlign: 'center',
-  padding: '2rem',
   display: 'flex',
-  justifyContent: 'space-between',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '8vh', // Set a minimum height to occupy the entire viewport vertically
 };
 
 const Footer: React.FC = () => {
@@ -22,12 +22,15 @@ const Footer: React.FC = () => {
       <Box sx={footerStyles}>
         {/* Box for address and subscription elements on the left margin */}
         <Box>
-          <Typography variant="body1">
+
+          <Typography variant="body1" sx={{ textAlign: 'center', fontWeight: 'bold' }}>
             Charlotte Office <br />
             333 W. Trade St. Charlotte, NC 20202 <br />
             IBG Consulting <br />
             All rights Reserved 2020-2023
           </Typography>
+
+
           <Box sx={{ marginTop: '1rem' }}>
             {/* <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} /> */}
             {/* <Button variant="contained" color="primary">
