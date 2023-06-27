@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Home, Menu } from '@mui/icons-material';
-
+//import { Home, Menu } from '@mui/icons-material';
+import logo from '../../assets/institute-icon.png';
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     // Add additional logic or navigation code here
   };
 
-  const handleButtonCLick = (buttonName: string) => {
+ const handleButtonCLick = (buttonName: string) => {
     console.log(`${buttonName} button clicked!`);
     // Add additional logic or navigation code here
   };
@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  return (
+ return (
     <Box
       sx={{
         display: 'flex',
@@ -32,7 +32,7 @@ const Header: React.FC = () => {
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleLogoClick}>
-          <Home sx={{ fontSize: 32 }} />
+          <img src={logo} style={{width:'2em'}} />
         </Link>
         <Typography variant="h6" component="div" sx={{ ml: 1 }}>
           Test Header
