@@ -1,27 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/home/Home";
-import About from "./components/about/About";
+import { Box } from "@mui/system";
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/header/Header";
-import Faqs from "./components/home/faqs/faqs";
-import './App.css'; // Import a CSS file for styling
+
+import ContactForm from "./components/forms/ContactForm";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="app-container">
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Router>
         <Header />
-        <div className="content">
+        <Box flexGrow={1}>
           <Routes>
-            <Route path="/faqs" element={<Faqs />} />
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<ContactForm />} />
           </Routes>
-        </div>
+        </Box>
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </Box>
+
   );
 }
 
