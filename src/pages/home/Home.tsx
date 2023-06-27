@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import HeroImage from "../../components/heroImage/HeroImage"; // don't forget to import HeroImage
+import HeroImage from "./components/heroImage/HeroImage"; // don't forget to import HeroImage
 import GetStartedForm from "../../components/forms/getStartedForm/GetStartedForm";
 import { Box } from '@mui/system'; // we'll use Box for more styling flexibility
+import InfoBlocks from "./components/infoblocks/InfoBlocks";
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
         <HeroImage /> 
         <GetStartedForm /> 
       </Box>
+      <InfoBlocks />
     </>
   );
 }
