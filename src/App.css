@@ -41,3 +41,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* Media Queries for Responsive Layout */
+@media screen and (max-width: 768px) {
+  /* Adjust the styling for smaller screens */
+  .App-header {
+    font-size: calc(10px + 1vmin);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Further adjustments for even smaller screens */
+  .App-header {
+    font-size: calc(10px + 0.5vmin);
+  }
+}
+
