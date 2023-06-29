@@ -43,14 +43,14 @@ export const blogPreviews = [
   },
   {
     image: 'https://picsum.photos/300/200',
-    category: 'Fun Fact & Trivia',
+    category: 'Fun Facts & Trivia',
     title: 'Surprising Facts About Programming Languages',
     summary: 'Did you know that the first high-level programming language was Fortran? Dive into the intriguing world of programming language history and uncover fascinating facts and trivia. From the origins of popular languages to quirky language features, this blog post will entertain and educate!',
     date: '2023-06-20',
   },
   {
     image: 'https://picsum.photos/300/200',
-    category: 'Tips & Tricks for Coding',
+    category: 'Trips & Tricks for Coding',
     title: 'Mastering Git: Essential Tips for Version Control',
     summary: 'Git is a powerful version control system that every developer should master. In this blog post, we share essential tips and tricks for using Git effectively. From branching strategies to resolving merge conflicts, level up your Git skills and streamline your development workflow.',
     date: '2023-06-22',
@@ -64,7 +64,7 @@ export const blogPreviews = [
   },
   {
     image: 'https://picsum.photos/300/200',
-    category: 'Fun Fact & Trivia',
+    category: 'Fun Facts & Trivia',
     title: 'The First Computer Bug',
     summary: 'Did you know that the first computer bug was an actual insect? Discover the story behind this famous incident and delve into the early days of computer programming. Learn about the pioneers and the challenges they faced in building the foundations of modern computing.',
     date: '2023-07-01',
@@ -78,7 +78,7 @@ export const blogPreviews = [
   },
   {
     image: 'https://picsum.photos/300/200',
-    category: 'Fun Fact & Trivia',
+    category: 'Fun Facts & Trivia',
     title: 'The First Computer Bug',
     summary: 'Did you know that the first computer bug was an actual insect? Discover the story behind this famous incident and delve into the early days of computer programming. Learn about the pioneers and the challenges they faced in building the foundations of modern computing.',
     date: '2023-07-01',
