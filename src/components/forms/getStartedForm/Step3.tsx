@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Grid,
@@ -10,7 +10,7 @@ import {
   SelectChangeEvent
 } from '@mui/material';
 
-import { countries, states } from '../../../constants';
+import { countries } from '../../../constants';
 
 interface Step3Props {
   onBack: () => void;
@@ -18,9 +18,22 @@ interface Step3Props {
   updateFormState: (state: any) => void;
 }
 
+interface State {
+  name: string;
+  code: string;
+}
+
 const Step3: React.FC<Step3Props> = ({ onBack, onNext, updateFormState }) => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
+  const [states, setStates] = useState<State[]>([]);
+
+  useEffect(() => {
+    // Reset states when country changes
+    setState('');
+    const selectedCountry = countries.find((item) => item.code === country);
+    setStates(selectedCountry?.states || []);
+  }, [country]);
 
   const handleCountryChange = (event: SelectChangeEvent<string>) => {
     setCountry(event.target.value);
