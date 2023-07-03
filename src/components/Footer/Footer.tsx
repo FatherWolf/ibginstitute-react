@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 const footerStyles = {
-  backgroundColor: 'grey',
+  backgroundColor: '#38A3A5',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -31,7 +31,19 @@ const Footer: React.FC = () => {
           </Typography>
 
 
-          <Box sx={{ marginTop: '1rem' }}>
+          <Box sx={{
+            marginTop: '1rem',
+            background: '#38A3A5',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '1.5rem',
+            flexDirection: 'column',
+            '@media (min-width: 600px)': {
+              flexDirection: 'row',
+            },
+
+          }}>
             {/* <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} /> */}
             {/* <Button variant="contained" color="primary">
               Subscribe
