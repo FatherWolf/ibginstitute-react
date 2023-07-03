@@ -1,65 +1,76 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-//import { Home, Menu } from '@mui/icons-material';
-import logo from '../../assets/institute-icon.png';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
+
+import { Menu } from "@mui/icons-material";
+
+import logo from "../../assets/institute-icon.png";
+
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isMobileScreen = useMediaQuery("(max-width:600px)");
 
-  const handleLogoClick = () => {
-    console.log('ibg-logo');
-    // Add additional logic or navigation code here
-  };
+  // const handleLogoClick = () => {
+  //   console.log("ibg-logo");
+  //   // Add additional logic or navigation code here
+  // };
 
- const handleButtonCLick = (buttonName: string) => {
-    console.log(`${buttonName} button clicked!`);
-    // Add additional logic or navigation code here
-  };
+  // const handleButtonClick = (buttonName: string) => {
+  //   console.log(`${buttonName} button clicked!`);
+  //   // Add additional logic or navigation code here
+  // };
 
   const handleMobileMenuToggle = () => {
+    // Are we here?
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
- return (
+  const handleMenuClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '1.5rem'
+        background: "#38A3A5",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "1.5rem",
+        flexDirection: "column",
+        "@media (min-width: 600px)": {
+          flexDirection: "row",
+        },
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleLogoClick}>
-          <img src={logo} style={{width:'2em'}} />
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "inherit" }}
+
+        >
+          <img src={logo} style={{ width: "2em" }} alt="IBG Institute" />
         </Link>
         <Typography variant="h6" component="div" sx={{ ml: 1 }}>
-          Test Header
+          IBG Institute
         </Typography>
       </Box>
-      <Box>
-        {/* Toggle button for mobile menu */}
-        <div className="mobile-menu-toggle" onClick={handleMobileMenuToggle}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        {/* Mobile menu */}
-        <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+      {!isMobileScreen && (
+        <>
           <Button
             component={Link}
-            to="/faqs"
+            to="/"
             variant="contained"
             color="primary"
             sx={{ mb: 1 }}
-            onClick={() => {
-              handleButtonCLick('FAQs');
-              handleMobileMenuToggle();
-            }}
+
           >
-            FAQs
+            Home
           </Button>
           <Button
             component={Link}
@@ -67,12 +78,19 @@ const Header: React.FC = () => {
             variant="contained"
             color="primary"
             sx={{ mb: 1 }}
-            onClick={() => {
-              handleButtonCLick('About Us');
-              handleMobileMenuToggle();
-            }}
+
           >
-            About Us
+            About
+          </Button>
+          <Button
+            component={Link}
+            to="/reviews"
+            variant="contained"
+            color="primary"
+            sx={{ mb: 1 }}
+
+          >
+            Reviews
           </Button>
           <Button
             component={Link}
@@ -80,12 +98,9 @@ const Header: React.FC = () => {
             variant="contained"
             color="primary"
             sx={{ mb: 1 }}
-            onClick={() => {
-              handleButtonCLick('Blog Link');
-              handleMobileMenuToggle();
-            }}
+
           >
-            Blog Link
+            Blog
           </Button>
           <Button
             component={Link}
@@ -93,14 +108,33 @@ const Header: React.FC = () => {
             variant="contained"
             color="primary"
             sx={{ mb: 1 }}
-            onClick={() => {
-              handleButtonCLick('Contact');
-              handleMobileMenuToggle();
-            }}
+
           >
             Contact
           </Button>
-        </div>
+        </>
+      )}
+
+      <Box>
+        {/* Toggle button for mobile menu */}
+        {isMobileScreen && (
+          <div className="mobile-menu-toggle" onClick={handleMobileMenuToggle}>
+            <Menu />
+          </div>
+        )}
+        {/* Mobile menu */}
+
+        {(isMobileScreen || isMobileMenuOpen) && (
+          <div className={`mobile-menu ${isMobileMenuOpen ? "active" : "hidden"}`}>
+            {isMobileMenuOpen && (
+              <>
+              <Typography>
+                Mobile menu will go here.
+              </Typography>
+              </>
+            )}
+          </div>
+        )}
       </Box>
     </Box>
   );
