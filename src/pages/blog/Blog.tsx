@@ -8,7 +8,11 @@ const Blog: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const handleTagSelect = (tag: string) => {
-    setSelectedTag(tag);
+    if (selectedTag === tag) {
+      setSelectedTag(null);
+    } else {
+      setSelectedTag(tag);
+    }
   };
 
   const filteredBlogs = selectedTag
@@ -24,7 +28,7 @@ const Blog: React.FC = () => {
       <Typography variant="h2" align="center">
         Blog Page will go here
       </Typography>
-      <TagFilter onTagSelect={handleTagSelect} />
+      <TagFilter selectedTag={selectedTag} onTagSelect={handleTagSelect} />
       <Grid container spacing={4} justifyContent="flex-start">
         {filteredBlogs.map((blog, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
@@ -35,7 +39,9 @@ const Blog: React.FC = () => {
               summary={blog.summary}
               date={blog.date}
               onClick={handleReadMore}
+              selectedTag={selectedTag}
             />
+
           </Grid>
         ))}
       </Grid>

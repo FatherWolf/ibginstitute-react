@@ -7,22 +7,23 @@ interface BlogCardProps {
   title: string;
   summary: string;
   date: string;
+  selectedTag: string | null;
   onClick: () => void;
 }
-
 const BlogCard: React.FC<BlogCardProps> = ({
   image,
   category,
   title,
   summary,
   date,
+  selectedTag,
   onClick,
 }) => {
   return (
     <Card sx={{ borderRadius: 8, display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box position="relative" height={0} paddingTop="56.25%">
         <img src={image} alt="Blog" style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
-        <CategoryTag category={category} label={category} />
+        <CategoryTag category={category} label={category} selected={category === selectedTag || selectedTag === null} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <CardContent>
