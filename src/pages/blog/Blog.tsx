@@ -28,7 +28,9 @@ const Blog: React.FC = () => {
       <Typography variant="h2" align="center">
         Blog Page will go here
       </Typography>
-      <TagFilter selectedTag={selectedTag} onTagSelect={handleTagSelect} />
+      <Box display="flex" justifyContent="center" my={2}>
+        <TagFilter selectedTag={selectedTag} onTagSelect={handleTagSelect} />
+      </Box>
       <Grid container spacing={4} justifyContent="flex-start">
         {filteredBlogs.map((blog, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
