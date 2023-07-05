@@ -42,15 +42,19 @@ const Blog: React.FC = () => {
       <Box display="flex" justifyContent="center" my={2}>
         <TagFilter selectedTag={selectedTag} onTagSelect={handleTagSelect} />
       </Box>
-      <Box my={2}>
-        <TextField
-          label="Search"
-          variant="outlined"
-          fullWidth
-          value={searchText}
-          onChange={handleSearch}
-        />
-      </Box>
+      <Grid container spacing={4} justifyContent="center">
+        <Grid item xs={12} sm={8} md={6} lg={4}>
+          <Box mb={2}>
+            <TextField
+              label="Search"
+              variant="outlined"
+              fullWidth
+              value={searchText}
+              onChange={handleSearch}
+            />
+          </Box>
+        </Grid>
+      </Grid>
       <Grid container spacing={4} justifyContent="flex-start">
         {filteredBlogs.map((blog, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
