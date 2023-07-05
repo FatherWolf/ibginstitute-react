@@ -36,7 +36,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+        <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center', mb: 2 }}>
           <Button variant="contained" onClick={onClick}>
             Read More
           </Button>
