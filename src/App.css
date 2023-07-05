@@ -1100,6 +1100,17 @@
   }
 }
 
+.magic-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+.magic-button {
+  margin: 0 8px;
+}
+
+
 /* Custom CSS for mobile menu toggle */
 .mobile-menu-toggle {
   display: flex;
