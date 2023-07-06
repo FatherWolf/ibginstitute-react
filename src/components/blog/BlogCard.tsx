@@ -20,7 +20,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   onClick,
 }) => {
   return (
-    <Card sx={{ borderRadius: 8, display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <Card sx={{ borderRadius: 8, display: 'flex', flexDirection: 'column', height: '100%' }} elevation={4}>
       <Box position="relative" height={0} paddingTop="56.25%">
         <img src={image} alt="Blog" style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
         <CategoryTag category={category} label={category} selected={category === selectedTag || selectedTag === null} />

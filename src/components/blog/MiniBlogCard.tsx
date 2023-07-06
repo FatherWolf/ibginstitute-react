@@ -20,7 +20,7 @@ const MiniBlogCard: React.FC<MiniBlogCardProps> = ({
   onClick,
 }) => {
   return (
-    <Card sx={{ width: '300px', borderRadius: 8, display: 'flex', flexDirection: 'column', marginBottom: 6 }}>
+    <Card sx={{ width: '300px', borderRadius: 8, display: 'flex', flexDirection: 'column', marginBottom: 6 }} elevation={4}>
       <Box sx={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
         <img
           src={image}
