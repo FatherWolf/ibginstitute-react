@@ -10,7 +10,7 @@ const BlogDetail: React.FC = () => {
   const blog = blogPreviews.find((blog) => blog.id === blogId);
   const navigate = useNavigate();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm')); // Detects if we are on small screen size or below (mobile)
+  const matches = useMediaQuery(theme.breakpoints.down('md')); 
 
   if (!blog) {
     return <div>Blog not found</div>;
@@ -25,7 +25,7 @@ const BlogDetail: React.FC = () => {
   };
 
   return (
-    <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}> {/* Responsive padding */}
+    <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
           <img src={blog.image} alt={blog.title} style={{ width: '100%', objectFit: 'cover' }} />
