@@ -6,6 +6,7 @@ import About from "./pages/about/About";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/header/Header";
 import Blog from "./pages/blog/Blog";
+import BlogDetail from "./pages/blog/BlogDetail";
 
 import ContactForm from "./components/forms/ContactForm";
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:blogId" element={<BlogDetail />} />
             <Route path="/contact" element={<ContactForm />} />
           </Routes>
         </Box>
