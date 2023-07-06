@@ -30,7 +30,7 @@ const BlogDetail: React.FC = () => {
     <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <img src={blog.image} alt={blog.title} style={{ width: '100%', objectFit: 'cover' }} />
+          <img src={blog.image} alt={blog.title} style={{ width: '100%', objectFit: 'cover', marginBottom: 10 }} />
           <Typography variant="h2" gutterBottom>{blog.title}</Typography>
           <Typography variant="h6">by {blog.author} on {new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
           <br />
@@ -68,8 +68,6 @@ const BlogDetail: React.FC = () => {
               </LinkedinShareButton>
             </Box>
           </Box>
-
-
         </Grid>
         {!matches && (
           <Grid item xs={12} md={4}>
