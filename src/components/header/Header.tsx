@@ -11,23 +11,12 @@ const Header: React.FC = () => {
   const location = useLocation();
   const isMobileScreen = useMediaQuery("(max-width:600px)");
 
-  // const handleLogoClick = () => {
-  //   console.log("ibg-logo");
-  //   // Add additional logic or navigation code here
-  // };
-
-  // const handleButtonClick = (buttonName: string) => {
-  //   console.log(`${buttonName} button clicked!`);
-  //   // Add additional logic or navigation code here
-  // };
-
   const handleMobileMenuToggle = () => {
-    // Are we here?
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const handleMenuClick = () => {
-    setIsMobileMenuOpen(false);
+    setIsMobileMenuOpen(true);
   };
 
   useEffect(() => {
@@ -40,7 +29,7 @@ const Header: React.FC = () => {
         background: "#38A3A5",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "flex-end",
         padding: "1.5rem",
         flexDirection: "column",
         "@media (min-width: 600px)": {
@@ -48,71 +37,69 @@ const Header: React.FC = () => {
         },
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <Link
-          to="/"
-          style={{ textDecoration: "none", color: "inherit" }}
-
-        >
+      <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <img src={logo} style={{ width: "2em" }} alt="IBG Institute" />
         </Link>
-        <Typography variant="h6" component="div" sx={{ ml: 1 }}>
+        {/* <Typography variant="h6" component="div" sx={{ ml: 1 }}>
           IBG Institute
-        </Typography>
+        </Typography> */}
       </Box>
       {!isMobileScreen && (
-        <>
-          <Button
-            component={Link}
-            to="/"
-            variant="contained"
-            color="primary"
-            sx={{ mb: 1 }}
-
-          >
-            Home
-          </Button>
-          <Button
-            component={Link}
-            to="/about"
-            variant="contained"
-            color="primary"
-            sx={{ mb: 1 }}
-
-          >
-            About
-          </Button>
-          <Button
-            component={Link}
-            to="/reviews"
-            variant="contained"
-            color="primary"
-            sx={{ mb: 1 }}
-
-          >
-            Reviews
-          </Button>
-          <Button
-            component={Link}
-            to="/blog"
-            variant="contained"
-            color="primary"
-            sx={{ mb: 1 }}
-
-          >
-            Blog
-          </Button>
-          <Button
-            component={Link}
-            to="/contact"
-            variant="contained"
-            color="primary"
-            sx={{ mb: 1 }}
-
-          >
-            Contact
-          </Button>
-        </>
+        <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginBottom: "1rem",
+        }}
+      >
+        <Button
+          component={Link}
+          to="/"
+          variant="contained"
+          color="primary"
+          sx={{ marginRight: "3px" }}
+        >
+          Home
+        </Button>
+        <Button
+          component={Link}
+          to="/about"
+          variant="contained"
+          color="primary"
+          sx={{ marginRight: "3px" }}
+        >
+          About
+        </Button>
+        <Button
+          component={Link}
+          to="/reviews"
+          variant="contained"
+          color="primary"
+          sx={{ marginRight: "3px" }}
+        >
+          FAQs
+        </Button>
+        <Button
+          component={Link}
+          to="/blog"
+          variant="contained"
+          color="primary"
+          sx={{ marginRight: "3px" }}
+        >
+          Blog
+        </Button>
+        <Button
+          component={Link}
+          to="/contact"
+          variant="contained"
+          color="primary"
+        >
+          Contact
+        </Button>
+      </Box>
+      
       )}
 
       <Box>
@@ -123,14 +110,17 @@ const Header: React.FC = () => {
           </div>
         )}
         {/* Mobile menu */}
-
         {(isMobileScreen || isMobileMenuOpen) && (
-          <div className={`mobile-menu ${isMobileMenuOpen ? "active" : "hidden"}`}>
+          <div
+            className={`Menu Clicked ${isMobileMenuOpen ? "active" : "hidden"}`}
+          >
             {isMobileMenuOpen && (
               <>
-              <Typography>
-                Mobile menu will go here.
-              </Typography>
+                <Typography>Home</Typography>
+                <Typography>About</Typography>
+                <Typography>FAQS</Typography>
+                <Typography>Blog</Typography>
+                <Typography>Contact</Typography>
               </>
             )}
           </div>
@@ -141,5 +131,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
-
