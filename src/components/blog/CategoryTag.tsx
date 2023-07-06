@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 interface TagProps extends BoxProps {
   category: string;
   label: string;
+  selected: boolean;
   onClick?: () => void;
 }
 
@@ -17,8 +18,6 @@ const StyledTag = styled(Box)<{ bgcolor: string }>(({ theme, bgcolor }) => ({
   color: '#fff',
   backgroundColor: bgcolor,
 }));
-
-
 
 const getTagColor = (category: string) => {
   switch (category) {
@@ -45,13 +44,16 @@ const getTagColor = (category: string) => {
   }
 };
 
-const CategoryTag: React.FC<TagProps> = ({ category, label, onClick, ...other }) => {
-  const bgcolor = getTagColor(category);
+const CategoryTag: React.FC<TagProps> = ({ category, label, selected, onClick, ...other }) => {
+  const defaultBgColor = getTagColor(category);
+  const selectedBgColor = selected ? defaultBgColor : '#9E9E9E';
   return (
-    <StyledTag bgcolor={bgcolor as any} onClick={onClick} {...other}>
+    <StyledTag bgcolor={selectedBgColor as any} onClick={onClick} {...other}>
       {label}
     </StyledTag>
   );
 };
+
+
 
 export default CategoryTag;

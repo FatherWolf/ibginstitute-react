@@ -16,23 +16,30 @@ const categories = [
 
 
 interface TagFilterProps {
+  selectedTag: string | null;
   onTagSelect: (tag: string) => void;
 }
 
-const TagFilter: React.FC<TagFilterProps> = ({ onTagSelect }) => {
+const TagFilter: React.FC<TagFilterProps> = ({ selectedTag, onTagSelect }) => {
   return (
     <Box my={2} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-      {categories.map((category, index) => (
-        <CategoryTag
-          key={index}
-          category={category}
-          label={category}
-          onClick={() => onTagSelect(category)}
-          sx={{ m: 1, cursor: 'pointer', position: 'relative' }}
-        />
-      ))}
+      {categories.map((category, index) => {
+        const selected = category === selectedTag || selectedTag === null;
+        return (
+          <CategoryTag
+            key={index}
+            category={category}
+            label={category}
+            selected={selected}
+            onClick={() => onTagSelect(category)}
+            sx={{ m: 1, cursor: 'pointer', position: 'relative' }}
+          />
+        );
+      })}
     </Box>
   );
 };
+
+
 
 export default TagFilter;
