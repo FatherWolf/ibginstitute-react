@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
             alignItems: 'center',
             padding: '1.5rem',
             flexDirection: 'column',
-            '@media (min-width: 600px)': {
+            '@media (min-width: 6px)': {
               flexDirection: 'row',
             },
 

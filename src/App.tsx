@@ -6,7 +6,7 @@ import About from "./pages/about/About";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/header/Header";
 import Blog from "./pages/blog/Blog";
-
+/**Where is the import for the Faqs from the button click route? In Route path /="faqs" element={<FAQS />} */
 import ContactForm from "./components/forms/ContactForm";
 
 const App: React.FC = () => {
@@ -20,6 +20,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<ContactForm />} />
+            
           </Routes>
         </Box>
         <Footer />
