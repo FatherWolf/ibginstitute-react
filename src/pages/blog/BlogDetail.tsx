@@ -98,7 +98,7 @@ const BlogDetail: React.FC = () => {
     <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10 }} />
+          <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8}} />
           <Typography variant="h2" gutterBottom>{blog.fields.title}</Typography>
           <Typography variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
           <Typography>
