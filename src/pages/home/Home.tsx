@@ -9,17 +9,18 @@ const Home: React.FC = () => {
   return (
     <>
       <Container>
-        <Typography variant="h2" align="center">
-          Welcome to IBG Institute
+        <Typography variant="h3" align="center">
+          Your journey to knowledge begins here
         </Typography>
         <Typography variant="body1" align="center">
-          Your journey to knowledge begins here.
+          <p>This exceptional chance allows for immediate involvement, offering an enthralling and interactive platform to unveil the fascinating narrative behind the website and its enticing offerings.</p>
         </Typography>
       </Container>
-      <Box sx={{ position: 'relative', width: '100%', height: '33.33vh' }}> 
+      <br></br>
+      <Box sx={{ position: 'relative', width: '100%', height: '33.33vh' }}>
         {/* Position the parent relative */}
-        <HeroImage /> 
-        <GetStartedForm /> 
+        <HeroImage />
+        <GetStartedForm />
       </Box>
       <InfoBlocks />
     </>
