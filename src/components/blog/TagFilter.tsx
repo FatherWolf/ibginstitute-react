@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import CategoryTag from './CategoryTag';
 
+
 const categories = [
   'Developer\'s Dialogue',
   'Career Advice',

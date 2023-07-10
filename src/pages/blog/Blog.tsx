@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography, TextField } from "@mui/material";
-import BlogCard from "../../components/blog/BlogCard";
-import { blogPreviews } from "../../constants/blogPreviews";
-import TagFilter from "../../components/blog/TagFilter";
 import { useNavigate } from "react-router-dom";
+import { fetchDocs } from "../../utils/fetchDocs";
+import { DocEntry } from "../../models/Doc";
+import BlogCard from "../../components/blog/BlogCard";
+import TagFilter from "../../components/blog/TagFilter";
+
+
 
 const Blog: React.FC = () => {
+  const [blogEntries, setBlogEntries] = useState<DocEntry[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docs = await fetchDocs();
+      setBlogEntries(docs);
+    };
+    fetchData();
+  }, []);
 
   const handleTagSelect = (tag: string) => {
     if (selectedTag === tag) {
@@ -23,14 +35,15 @@ const Blog: React.FC = () => {
     setSearchText(event.target.value);
   };
 
-  const filteredBlogs = blogPreviews.filter((blog) => {
-    const hasMatchingTag = selectedTag ? blog.category === selectedTag : true;
+  const filteredBlogs = blogEntries.filter((blog) => {
+    const hasMatchingTag = selectedTag ? blog.fields.category === selectedTag : true;
     const hasMatchingSearch =
       searchText === "" ||
-      blog.title.toLowerCase().includes(searchText.toLowerCase()) ||
-      blog.summary.toLowerCase().includes(searchText.toLowerCase());
+      blog.fields.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      blog.fields.summary.toLowerCase().includes(searchText.toLowerCase());
     return hasMatchingTag && hasMatchingSearch;
   });
+
 
 
   const handleReadMore = (blogId: string) => {
@@ -62,17 +75,17 @@ const Blog: React.FC = () => {
         {filteredBlogs.map((blog, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <BlogCard
-              image={blog.image}
-              category={blog.category}
-              title={blog.title}
-              summary={blog.summary}
-              date={blog.date}
-              onClick={() => handleReadMore(blog.id)}
+              assetId={blog.fields.featuredImage.sys.id}
+              category={blog.fields.category}
+              title={blog.fields.title}
+              summary={blog.fields.summary}
+              date={blog.fields.date}
+              onClick={() => handleReadMore(blog.sys.id)}
               selectedTag={selectedTag}
             />
-
           </Grid>
         ))}
+
       </Grid>
     </Box>
   );
