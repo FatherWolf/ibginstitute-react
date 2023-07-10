@@ -1,6 +1,11 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
 
+/**
+ * WE should path or route this in as reviews is not what the button is being used for... 
+ * this return container. 
+ * We needs self contained faqs already known...
+ */
 const Faqs: React.FC = () => {
     return (
         <Container>
