@@ -12,9 +12,17 @@ const Header: React.FC = () => {
   const isMobileScreen = useMediaQuery("(max-width:733px)");
 
   const handleMobileMenuToggle = () => {
+
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  // if screensize is 733 px and up then set ismobile menue oupe is set to false
 
+  useEffect(() => {
+    if (!isMobileScreen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isMobileScreen]);
+  
   const handleMenuClick = () => {
     console.log(`FAQS`);
     setIsMobileMenuOpen(true);
@@ -24,9 +32,9 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   setIsMobileMenuOpen(false);
+  // }, [location.pathname]);
 
   return (
     <Box
