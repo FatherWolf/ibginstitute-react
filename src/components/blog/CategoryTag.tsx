@@ -33,12 +33,14 @@ const getTagColor = (category: string) => {
       return '#3F51B5';
     case 'Fun Facts & Trivia':
       return '#009688';
-    case 'Trips & Tricks for Coding':
+    case 'Tips & Tricks for Coding':
       return '#FFC107';
     case 'Project Showcase':
       return '#E91E63';
     case 'Language Spotlight':
       return '#00BCD4';
+      case 'Technical':
+        return '#8BC34A';
     default:
       return '#9E9E9E';
   }

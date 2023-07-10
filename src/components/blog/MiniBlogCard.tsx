@@ -1,9 +1,11 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, Button } from '@mui/material';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import CategoryTag from './CategoryTag';
+import EmbeddedAsset from './EmbeddedAsset';
+
 
 interface MiniBlogCardProps {
-  image: string;
+  assetId: string;
   category: string;
   title: string;
   date: string;
@@ -12,7 +14,7 @@ interface MiniBlogCardProps {
 }
 
 const MiniBlogCard: React.FC<MiniBlogCardProps> = ({
-  image,
+ assetId,
   category,
   title,
   date,
@@ -20,20 +22,16 @@ const MiniBlogCard: React.FC<MiniBlogCardProps> = ({
   onClick,
 }) => {
   return (
-    <Card sx={{ width: '300px', borderRadius: 8, display: 'flex', flexDirection: 'column', marginBottom: 6 }} elevation={4}>
+    <Card sx={{ width: '300px', borderRadius: 2, display: 'flex', flexDirection: 'column', marginBottom: 6 }} elevation={4}>
       <Box sx={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-        <img
-          src={image}
-          alt="Blog"
-          style={{
+        <EmbeddedAsset assetId={assetId}  style={{
             objectFit: 'cover',
             width: '100%',
             height: '100%',
             position: 'absolute',
             top: 0,
             left: 0
-          }}
-        />
+          }}/>
         <CategoryTag category={category} label={category} selected={category === selectedTag || selectedTag === null} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>

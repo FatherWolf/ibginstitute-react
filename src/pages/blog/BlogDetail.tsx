@@ -1,54 +1,110 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { EmailShareButton, FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import { EmailIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
-import { blogPreviews } from '../../constants';
+
 import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
 import MiniBlogCard from '../../components/blog/MiniBlogCard';
-import { useNavigate } from "react-router-dom";
+import { fetchDoc } from '../../utils/fetchDoc';
+import { DocEntry } from '../../models/Doc';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import EmbeddedAsset from '../../components/blog/EmbeddedAsset';
+import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { fetchDocs } from '../../utils/fetchDocs';
 
 const BlogDetail: React.FC = () => {
-  let { blogId } = useParams<{ blogId: string }>();
-  const blog = blogPreviews.find((blog) => blog.id === blogId);
+  let { blogId } = useParams<{ blogId: string | undefined }>();
+  const [blog, setBlog] = useState<DocEntry | null>(null);
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const [recentBlogEntries, setRecentBlogEntries] = useState<DocEntry[]>([]);
 
-  if (!blog) {
-    return <div>Blog not found</div>;
-  }
+  const richTextOptions = {
+    renderMark: {
+      [MARKS.BOLD]: (text: React.ReactNode) => <strong>{text}</strong>,
+      [MARKS.ITALIC]: (text: React.ReactNode) => <em>{text}</em>,
+      [MARKS.UNDERLINE]: (text: React.ReactNode) => <u>{text}</u>,
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
+        <p>{children}</p>
+      ),
+      [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
+        <h1>{children}</h1>
+      ),
+      [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
+        <h2>{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
+        <h3>{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (_node: any, children: React.ReactNode) => (
+        <h4>{children}</h4>
+      ),
+      [BLOCKS.HEADING_5]: (_node: any, children: React.ReactNode) => (
+        <h5>{children}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (_node: any, children: React.ReactNode) => (
+        <h6>{children}</h6>
+      ),
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const assetId = node.data.target.sys.id;
+        return <EmbeddedAsset assetId={assetId} />;
+      },
+    },
+  };
 
-  const paragraphs = blog.content ? blog.content.split('\n\n') : [];
+  useEffect(() => {
+    const fetchData = async () => {
+      if (blogId) {
+        try {
+          const doc = await fetchDoc(blogId);
+          setBlog(doc);
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        console.error("blogId is undefined");
+      }
+    };
 
-  const recentBlogs = blogPreviews.filter((item) => item.id !== blog.id).slice(0, 5);
+    fetchData();
+  }, [blogId]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const entries = await fetchDocs();
+        setRecentBlogEntries(entries.slice(0, 5));
+        // console.log("entries ", entries);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleReadMore = (blogId: string) => {
     navigate(`/blog/${blogId}`);
   };
 
+  if (!blog) {
+    return <div>Blog not found</div>;
+  }
+
   return (
     <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <img src={blog.image} alt={blog.title} style={{ width: '100%', objectFit: 'cover', marginBottom: 10 }} />
-          <Typography variant="h2" gutterBottom>{blog.title}</Typography>
-          <Typography variant="h6">by {blog.author} on {new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
-          <br />
-          {paragraphs.map((paragraph: string, index: number) => (
-            <Typography variant="body1" paragraph key={index}>
-              {paragraph}
-            </Typography>
-          ))}
-          {blog.videoEditor && (
-            <Typography variant="body2" align="right">
-              Video editing by {blog.videoEditor}
-            </Typography>
-          )}
-          {blog.imageCredit && (
-            <Typography variant="body2" align="right">
-              Featured image by {blog.imageCredit}
-            </Typography>
-          )}
+          <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8}} />
+          <Typography variant="h2" gutterBottom>{blog.fields.title}</Typography>
+          <Typography variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
+          <Typography>
+            {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
+          </Typography>
+
           <Box display="flex">
             <Typography marginRight="20px">
               Share:
@@ -73,15 +129,15 @@ const BlogDetail: React.FC = () => {
           <Grid item xs={12} md={4}>
             <Typography variant="h4" align="center" gutterBottom>Recent Blogs</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {recentBlogs.map((miniBlog) => (
+              {recentBlogEntries.map((blog) => (
                 <MiniBlogCard
-                  key={miniBlog.id}
-                  image={miniBlog.image}
-                  category={miniBlog.category}
-                  title={miniBlog.title}
-                  date={miniBlog.date}
+                  key={blog.sys.id}
+                  assetId={blog.fields.featuredImage.sys.id}
+                  category={blog.fields.category}
+                  title={blog.fields.title}
+                  date={blog.fields.date}
                   selectedTag={null}
-                  onClick={() => handleReadMore(miniBlog.id)}
+                  onClick={() => handleReadMore(blog.sys.id)}
                 />
               ))}
             </Box>
@@ -89,7 +145,7 @@ const BlogDetail: React.FC = () => {
         )}
       </Grid>
     </Box>
-  )
+  );
 };
 
 export default BlogDetail;

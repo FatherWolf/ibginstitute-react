@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import CategoryTag from './CategoryTag';
 
+
 const categories = [
   'Developer\'s Dialogue',
   'Career Advice',
@@ -9,9 +10,10 @@ const categories = [
   'Learning Resources',
   'News and Updates',
   'Fun Facts & Trivia',
-  'Trips & Tricks for Coding',
+  'Tips & Tricks for Coding',
   'Project Showcase',
-  'Language Spotlight'
+  'Language Spotlight',
+  'Technical'
 ];
 
 

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, Button } from '@mui/material';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import CategoryTag from './CategoryTag';
+import EmbeddedAsset from './EmbeddedAsset';
+
 interface BlogCardProps {
-  image: string;
+  assetId: string;
   category: string;
   title: string;
   summary: string;
@@ -10,8 +12,9 @@ interface BlogCardProps {
   selectedTag: string | null;
   onClick: () => void;
 }
+
 const BlogCard: React.FC<BlogCardProps> = ({
-  image,
+  assetId,
   category,
   title,
   summary,
@@ -19,10 +22,11 @@ const BlogCard: React.FC<BlogCardProps> = ({
   selectedTag,
   onClick,
 }) => {
+
   return (
-    <Card sx={{ borderRadius: 8, display: 'flex', flexDirection: 'column', height: '100%' }} elevation={4}>
-      <Box position="relative" height={0} paddingTop="56.25%">
-        <img src={image} alt="Blog" style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
+    <Card sx={{ borderRadius: 2, display: 'flex', flexDirection: 'column', height: '100%' }} elevation={4}>
+      <Box position="relative" height={0} paddingTop="56.25%" paddingBottom="56.25%">
+        <EmbeddedAsset assetId={assetId} style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
         <CategoryTag category={category} label={category} selected={category === selectedTag || selectedTag === null} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -45,6 +49,6 @@ const BlogCard: React.FC<BlogCardProps> = ({
       </Box>
     </Card>
   );
-};
+}
 
 export default BlogCard;
