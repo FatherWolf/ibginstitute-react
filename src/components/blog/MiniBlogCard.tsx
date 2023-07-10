@@ -1,28 +1,39 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Button } from '@mui/material';
 import CategoryTag from './CategoryTag';
-interface BlogCardProps {
+
+interface MiniBlogCardProps {
   image: string;
   category: string;
   title: string;
-  summary: string;
   date: string;
   selectedTag: string | null;
   onClick: () => void;
 }
-const BlogCard: React.FC<BlogCardProps> = ({
+
+const MiniBlogCard: React.FC<MiniBlogCardProps> = ({
   image,
   category,
   title,
-  summary,
   date,
   selectedTag,
   onClick,
 }) => {
   return (
-    <Card sx={{ borderRadius: 8, display: 'flex', flexDirection: 'column', height: '100%' }} elevation={4}>
-      <Box position="relative" height={0} paddingTop="56.25%">
-        <img src={image} alt="Blog" style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
+    <Card sx={{ width: '300px', borderRadius: 8, display: 'flex', flexDirection: 'column', marginBottom: 6 }} elevation={4}>
+      <Box sx={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+        <img
+          src={image}
+          alt="Blog"
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        />
         <CategoryTag category={category} label={category} selected={category === selectedTag || selectedTag === null} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -30,21 +41,19 @@ const BlogCard: React.FC<BlogCardProps> = ({
           <Typography variant="h6" component="h2" align="center" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" align="left" paragraph>
-            {summary}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" align="left">
+          <Typography variant="body2" color="text.secondary" align="center">
             {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>
+          <Box sx={{ mt: 2, mb: 0, display: 'flex', justifyContent: 'center' }}>
+            <Button variant="contained" onClick={onClick}>
+              Read More
+            </Button>
+          </Box>
         </CardContent>
-        <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center', mb: 2 }}>
-          <Button variant="contained" onClick={onClick}>
-            Read More
-          </Button>
-        </Box>
+
       </Box>
     </Card>
   );
 };
 
-export default BlogCard;
+export default MiniBlogCard;

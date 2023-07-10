@@ -3,10 +3,13 @@ import { Box, Grid, Typography, TextField } from "@mui/material";
 import BlogCard from "../../components/blog/BlogCard";
 import { blogPreviews } from "../../constants/blogPreviews";
 import TagFilter from "../../components/blog/TagFilter";
+import { useNavigate } from "react-router-dom";
 
 const Blog: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const handleTagSelect = (tag: string) => {
     if (selectedTag === tag) {
@@ -30,8 +33,8 @@ const Blog: React.FC = () => {
   });
 
 
-  const handleReadMore = () => {
-    // Logic for redirecting to full blog
+  const handleReadMore = (blogId: string) => {
+    navigate(`/blog/${blogId}`);
   };
 
   return (
@@ -64,7 +67,7 @@ const Blog: React.FC = () => {
               title={blog.title}
               summary={blog.summary}
               date={blog.date}
-              onClick={handleReadMore}
+              onClick={() => handleReadMore(blog.id)}
               selectedTag={selectedTag}
             />
 
