@@ -12,7 +12,8 @@ const categories = [
   'Fun Facts & Trivia',
   'Tips & Tricks for Coding',
   'Project Showcase',
-  'Language Spotlight'
+  'Language Spotlight',
+  'Technical'
 ];
 
 

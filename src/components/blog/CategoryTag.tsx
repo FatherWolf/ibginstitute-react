@@ -39,6 +39,8 @@ const getTagColor = (category: string) => {
       return '#E91E63';
     case 'Language Spotlight':
       return '#00BCD4';
+      case 'Technical':
+        return '#8BC34A';
     default:
       return '#9E9E9E';
   }
