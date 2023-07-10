@@ -10,7 +10,7 @@ const categories = [
   'Learning Resources',
   'News and Updates',
   'Fun Facts & Trivia',
-  'Trips & Tricks for Coding',
+  'Tips & Tricks for Coding',
   'Project Showcase',
   'Language Spotlight'
 ];
