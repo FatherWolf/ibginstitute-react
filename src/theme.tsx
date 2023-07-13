@@ -2,21 +2,21 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    //defualt colors
+    //our color palette but i think it needs to be adjusted 
     primary: {
-      main: '#f44336', // Red color
+      main: '#22577A', // Dark blue color
     },
     secondary: {
-      main: '#3f51b5', // Blue color
+      main: '#38A3A5', // teal color
     },
     error: {
-      main: '#f44336', // Red color
+      main: '#57CC99', // Light green color
     },
     warning: {
-      main: '#ff9800', // Orange color
+      main: '#80ED99', // Sea green color
     },
     info: {
-      main: '#2196f3', // Light blue color
+      main: '#C7F9CC', // Pastel green color
     },
     success: {
       main: '#4caf50', // Green color
