@@ -13,9 +13,12 @@ import BlogDetail from "./pages/blog/BlogDetail";
 /**Where is the import for the Faqs from the button click route? In Route path /="faqs" element={<FAQS />} */
 
 import ContactForm from "./components/forms/ContactForm";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 const App: React.FC = () => {
   return (
+    <ThemeProvider theme={theme}>
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Router>
         <Header />
@@ -32,7 +35,7 @@ const App: React.FC = () => {
         <Footer />
       </Router>
     </Box>
-
+    </ThemeProvider>
   );
 }
 
