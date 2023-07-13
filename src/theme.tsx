@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
+    //defualt colors
     primary: {
       main: '#f44336', // Red color
     },
