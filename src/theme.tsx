@@ -4,22 +4,22 @@ const theme = createTheme({
   palette: {
     //our color palette but i think it needs to be adjusted 
     primary: {
-      main: '#22577A', // Dark blue color
+      main: '#023047', // Dark blue color
     },
     secondary: {
-      main: '#38A3A5', // teal color
+      main: '#219EBC', // teal color
     },
     error: {
-      main: '#57CC99', // Light green color
+      main: '#FB8500', // Orange color for text highlighting
     },
     warning: {
-      main: '#80ED99', // Sea green color
+      main: '#FFB703', // Yellow color for accent
     },
     info: {
-      main: '#C7F9CC', // Pastel green color
+      main: '#8ECAE6', // Light blue color for accent
     },
     success: {
-      main: '#4caf50', // Green color
+      main: '#4caf50', // Green color extra color
     },
   },
 });
