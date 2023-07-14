@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
-
 import { Menu, Close } from "@mui/icons-material";
-
 import logo from "../../assets/institute-icon.png";
 
 const Header: React.FC = () => {
@@ -12,29 +10,19 @@ const Header: React.FC = () => {
   const isMobileScreen = useMediaQuery("(max-width:733px)");
 
   const handleMobileMenuToggle = () => {
-
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-  // if screensize is 733 px and up then set ismobile menue oupe is set to false
 
   useEffect(() => {
     if (!isMobileScreen) {
       setIsMobileMenuOpen(false);
     }
   }, [isMobileScreen]);
-  
-  const handleMenuClick = () => {
-    console.log(`FAQS`);
-    setIsMobileMenuOpen(true);
-  };
 
-  const handleMenuClose = () => {
-    setIsMobileMenuOpen(false);
+  const handleMenuClick = (path: string) => {
+    console.log(`Clicked ${path}`);
+    setIsMobileMenuOpen(false); // Close the mobile menu
   };
-
-  // useEffect(() => {
-  //   setIsMobileMenuOpen(false);
-  // }, [location.pathname]);
 
   return (
     <Box
@@ -64,6 +52,7 @@ const Header: React.FC = () => {
           IBG Institute
         </Typography>
       </Box>
+
       {!isMobileScreen && (
         <Box
           sx={{
@@ -113,6 +102,7 @@ const Header: React.FC = () => {
             to="/contact"
             variant="contained"
             color="primary"
+            sx={{ marginRight: "1.618rem" }} // Golden ratio
           >
             Contact
           </Button>
@@ -138,7 +128,7 @@ const Header: React.FC = () => {
           {isMobileMenuOpen && (
             <Close
               sx={{ cursor: "pointer" }}
-              onClick={handleMenuClose}
+              onClick={handleMobileMenuToggle}
             />
           )}
         </Box>
@@ -155,69 +145,88 @@ const Header: React.FC = () => {
             flexBasis: "100%",
           }}
         >
-          <Button
-            component={Link}
-            to="/"
-            variant="contained"
-            color="primary"
-            sx={{
-              marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
-              marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
-            }}
-          >
-            Home
-          </Button>
-          <Button
-            component={Link}
-            to="/about"
-            variant="contained"
-            color="primary"
-            sx={{
-              marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
-              marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
-            }}
-          >
-            About
-          </Button>
-          <Button
-            component={Link}
-            to="/faqs"
-            variant="contained"
-            color="primary"
-            sx={{
-              marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
-              marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
-            }}
-          >
-            FAQs
-          </Button>
-          <Button
-            component={Link}
-            to="/blog"
-            variant="contained"
-            color="primary"
-            sx={{
-              marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
-              marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
-            }}
-          >
-            Blog
-          </Button>
-          <Button
-            component={Link}
-            to="/contact"
-            variant="contained"
-            color="primary"
-            sx={{ marginBottom: isMobileScreen ? "1.618rem" : 0 }} // Golden ratio
-          >
-            Contact
-          </Button>
+          {/* Mobile menu */}
+          <Box>
+            <Button
+              component={Link}
+              to="/"
+              variant="contained"
+              color="primary"
+              sx={{
+                marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
+                marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
+              }}
+              onClick={() => handleMenuClick("/")}
+            >
+              Home
+            </Button>
+            <Button
+              component={Link}
+              to="/about"
+              variant="contained"
+              color="primary"
+              sx={{
+                marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
+                marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
+              }}
+              onClick={() => handleMenuClick("/about")}
+            >
+              About
+            </Button>
+            <Button
+              component={Link}
+              to="/faqs"
+              variant="contained"
+              color="primary"
+              sx={{
+                marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
+                marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
+              }}
+              onClick={() => handleMenuClick("/faqs")}
+            >
+              FAQs
+            </Button>
+            <Button
+              component={Link}
+              to="/blog"
+              variant="contained"
+              color="primary"
+              sx={{
+                marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
+                marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
+              }}
+              onClick={() => handleMenuClick("/blog")}
+            >
+              Blog
+            </Button>
+            <Button
+              component={Link}
+              to="/contact"
+              variant="contained"
+              color="primary"
+              sx={{
+                marginBottom: isMobileScreen ? "1.618rem" : 0, // Golden ratio
+                marginRight: isMobileScreen ? 0 : "1.618rem", // Golden ratio
+              }}
+              onClick={() => handleMenuClick("/contact")}
+            >
+              Contact
+            </Button>
+          </Box>
         </Box>
+      )}
+
+      {/* Spacer for center alignment */}
+      {isMobileScreen && !isMobileMenuOpen && (
+        <Box
+          sx={{
+            flexGrow: 1,
+          }}
+        />
       )}
     </Box>
   );
 };
 
 export default Header;
-
 
