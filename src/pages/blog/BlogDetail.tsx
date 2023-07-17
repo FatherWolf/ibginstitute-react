@@ -4,12 +4,13 @@ import { EmailShareButton, FacebookShareButton, LinkedinShareButton, TwitterShar
 import { EmailIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
 
 import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { styled } from '@mui/system';
 import MiniBlogCard from '../../components/blog/MiniBlogCard';
 import { fetchDoc } from '../../utils/fetchDoc';
 import { DocEntry } from '../../models/Doc';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import EmbeddedAsset from '../../components/blog/EmbeddedAsset';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import { fetchDocs } from '../../utils/fetchDocs';
 
 const BlogDetail: React.FC = () => {
@@ -19,6 +20,15 @@ const BlogDetail: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const [recentBlogEntries, setRecentBlogEntries] = useState<DocEntry[]>([]);
+
+  const InlineLink = styled('a')(({ theme }) => ({
+    color: theme.palette.warning.main,
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.warning.dark,
+    },
+  }));
+
 
   const richTextOptions = {
     renderMark: {
@@ -52,6 +62,9 @@ const BlogDetail: React.FC = () => {
         const assetId = node.data.target.sys.id;
         return <EmbeddedAsset assetId={assetId} />;
       },
+      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
+        <InlineLink href={node.data.uri}>{children}</InlineLink>
+      ),
     },
   };
 
@@ -95,18 +108,18 @@ const BlogDetail: React.FC = () => {
   }
 
   return (
-    <Box sx={{ pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
+    <Box sx={{ bgcolor: 'primary.main', pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8}} />
-          <Typography variant="h2" gutterBottom>{blog.fields.title}</Typography>
-          <Typography variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
-          <Typography>
+          <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8 }} />
+          <Typography color="white" variant="h2" gutterBottom>{blog.fields.title}</Typography>
+          <Typography color="white" variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
+          <Typography color="white">
             {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
           </Typography>
 
           <Box display="flex">
-            <Typography marginRight="20px">
+            <Typography color="white" marginRight="20px">
               Share:
             </Typography>
             <Box style={{ display: "flex" }}>
