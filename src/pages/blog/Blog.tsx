@@ -52,7 +52,7 @@ const Blog: React.FC = () => {
 
   return (
     <Box sx={{ bgcolor: 'primary.main' }} p={{ xs: 2, md: 7, lg: 10 }}>
-      <Typography color="white" variant="h2" align="center">
+      <Typography color="common.white" variant="h2" align="center">
         IBG Institute Tech Blog
       </Typography>
       <Box display="flex" justifyContent="center" my={2}>

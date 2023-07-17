@@ -22,7 +22,7 @@ const MiniBlogCard: React.FC<MiniBlogCardProps> = ({
   onClick,
 }) => {
   return (
-    <Card sx={{ width: '300px', borderRadius: 2, display: 'flex', flexDirection: 'column', marginBottom: 6 }} elevation={4}>
+    <Card sx={{ width: '300px', borderRadius: 2, display: 'flex', flexDirection: 'column', marginBottom: 6, bgcolor: 'common.white', color:'primary.main' }} elevation={4}>
       <Box sx={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
         <EmbeddedAsset assetId={assetId}  style={{
             objectFit: 'cover',

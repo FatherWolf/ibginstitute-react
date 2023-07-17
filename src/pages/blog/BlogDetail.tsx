@@ -112,14 +112,14 @@ const BlogDetail: React.FC = () => {
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
           <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8 }} />
-          <Typography color="white" variant="h2" gutterBottom>{blog.fields.title}</Typography>
-          <Typography color="white" variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
-          <Typography color="white">
+          <Typography color="common.white" variant="h2" gutterBottom>{blog.fields.title}</Typography>
+          <Typography color="common.white" variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
+          <Typography color="common.white">
             {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
           </Typography>
 
           <Box display="flex">
-            <Typography color="white" marginRight="20px">
+            <Typography color="common.white" marginRight="20px">
               Share:
             </Typography>
             <Box style={{ display: "flex" }}>
@@ -140,8 +140,8 @@ const BlogDetail: React.FC = () => {
         </Grid>
         {!matches && (
           <Grid item xs={12} md={4}>
-            <Typography variant="h4" align="center" gutterBottom>Recent Blogs</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography color="common.white" variant="h4" align="center" gutterBottom>Recent Blogs</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               {recentBlogEntries.map((blog) => (
                 <MiniBlogCard
                   key={blog.sys.id}
