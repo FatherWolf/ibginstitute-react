@@ -15,7 +15,7 @@ const StyledTag = styled(Box)<{ bgcolor: string }>(({ theme, bgcolor }) => ({
   left: theme.spacing(1),
   borderRadius: theme.spacing(0.5),
   padding: theme.spacing(0.5, 1),
-  color: '#fff',
+  color: 'primary',
   backgroundColor: bgcolor,
 }));
 
@@ -39,8 +39,8 @@ const getTagColor = (category: string) => {
       return '#E91E63';
     case 'Language Spotlight':
       return '#00BCD4';
-      case 'Technical':
-        return '#8BC34A';
+    case 'Technical':
+      return '#8BC34A';
     default:
       return '#9E9E9E';
   }
