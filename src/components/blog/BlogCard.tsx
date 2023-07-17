@@ -31,13 +31,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <CardContent>
-          <Typography variant="h6" component="h2" align="center" gutterBottom>
+          <Typography variant="h6" color="primary" component="h2" align="center" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" align="left" paragraph>
+          <Typography variant="body2" color="primary" align="left" paragraph>
             {summary}
           </Typography>
-          <Typography variant="body2" color="text.secondary" align="left">
+          <Typography variant="body2" color="primary" align="left">
             {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>
         </CardContent>
