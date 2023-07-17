@@ -51,8 +51,8 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <Box p={{ xs: 2, md: 7, lg: 10 }}>
-      <Typography variant="h2" align="center">
+    <Box sx={{ bgcolor: 'primary.main' }} p={{ xs: 2, md: 7, lg: 10 }}>
+      <Typography color="white" variant="h2" align="center">
         IBG Institute Tech Blog
       </Typography>
       <Box display="flex" justifyContent="center" my={2}>
@@ -67,6 +67,29 @@ const Blog: React.FC = () => {
               fullWidth
               value={searchText}
               onChange={handleSearch}
+              InputProps={{
+                style: {
+                  color: 'white'
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  color: 'white'
+                }
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'secondary.main'
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'secondary.main'
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'secondary.main'
+                  }
+                }
+              }}
             />
           </Box>
         </Grid>
