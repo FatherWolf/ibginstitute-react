@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 const footerStyles = {
-  backgroundColor: '#38A3A5',
+  backgroundColor: '#C7F9CC',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -20,38 +20,8 @@ const Footer: React.FC = () => {
   return (
     <footer>
       <Box sx={footerStyles}>
-        {/* Box for address and subscription elements on the left margin */}
-        <Box>
-
-          <Typography variant="body1" sx={{ textAlign: 'center', fontWeight: 'bold' }}>
-            Charlotte Office <br />
-            333 W. Trade St. Charlotte, NC 20202 <br />
-            IBG Consulting <br />
-            All rights Reserved 2020-2023
-          </Typography>
-
-
-          <Box sx={{
-            marginTop: '1rem',
-            background: '#38A3A5',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '1.5rem',
-            flexDirection: 'column',
-            '@media (min-width: 6px)': {
-              flexDirection: 'row',
-            },
-
-          }}>
-            {/* <TextField label="Subscribe" variant="outlined" size="small" sx={{ marginRight: '1rem' }} /> */}
-            {/* <Button variant="contained" color="primary">
-              Subscribe
-            </Button> */}
-          </Box>
-        </Box>
-        {/* Created a Box for social media icons on the right margin */}
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+        {/* Box for social media icons */}
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <IconButton onClick={() => handleSocialMediaIconClick("https://facebook.com")}>
             <Facebook />
           </IconButton>
@@ -65,10 +35,24 @@ const Footer: React.FC = () => {
             <LinkedIn />
           </IconButton>
         </Box>
+
+        {/* Box for address and subscription elements */}
+        <Box>
+          <Typography variant="body1" sx={{
+            textAlign: 'center', fontWeight: 'bold', marginTop: '2rem',
+            marginBottom: '1rem',
+          }}>
+            Charlotte Office <br />
+            333 W. Trade St. Charlotte, NC 20202 <br />
+            IBG Consulting <br />
+            All rights Reserved 2020-2023
+          </Typography>
+        </Box>
       </Box>
     </footer>
   );
 };
 
 export default Footer;
+
 

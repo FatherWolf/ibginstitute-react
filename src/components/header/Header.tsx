@@ -21,30 +21,31 @@ const Header: React.FC = () => {
     }
   }, [isMobileScreen]);
 
+  // Header styles
+  const containerStyle: React.CSSProperties = {
+    background: "#80ED99",
+    display: "flex",
+    flexDirection: "column",
+    padding: "1.5rem",
+  };
+
+  const innerBoxStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "right",
+    flexDirection: isMobileScreen ? "column" : "row",
+  };
+
+  const logoBoxStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "right",
+    marginBottom: isMobileScreen ? "1.618rem" : 0,
+  };
+
   return (
-    <Box
-      sx={{
-        background: "#38A3A5",
-        display: "flex",
-        flexDirection: "column",
-        padding: "1.5rem",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexDirection: isMobileScreen ? "column" : "row",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: isMobileScreen ? "1.618rem" : 0,
-          }}
-        >
+    <Box sx={containerStyle}>
+      <Box sx={innerBoxStyle}>
+        <Box sx={logoBoxStyle}>
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <img src={logo} style={{ width: "2em" }} alt="IBG Institute" />
           </Link>
@@ -52,14 +53,13 @@ const Header: React.FC = () => {
             IBG Institute
           </Typography>
         </Box>
-
         {isMobileScreen ? (
           <Menu onClick={handleMobileMenuToggle} sx={{ cursor: "pointer" }} />
         ) : (
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "right",
             }}
           >
             <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginRight: "1.618rem" }}>
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "right",
             marginTop: "1.618rem",
             marginBottom: "1.618rem",
           }}
@@ -114,3 +114,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
