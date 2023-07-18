@@ -21,6 +21,9 @@ const theme = createTheme({
     success: {
       main: '#4caf50', // Green color extra color
     },
+    common: {
+      white: '#F5F5F5' //smoke white color 
+    }
   },
 });
 
