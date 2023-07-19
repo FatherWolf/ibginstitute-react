@@ -32,13 +32,13 @@ const Header: React.FC = () => {
   const innerBoxStyle: React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "right",
-    flexDirection: isMobileScreen ? "column" : "row",
+    alignItems: "center",
+    flexDirection: isMobileScreen ? "row" : "row", // Keep it as row for both mobile and web view
   };
 
   const logoBoxStyle: React.CSSProperties = {
     display: "flex",
-    alignItems: "right",
+    alignItems: "center",
     marginBottom: isMobileScreen ? "1.618rem" : 0,
   };
 
@@ -49,17 +49,19 @@ const Header: React.FC = () => {
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <img src={logo} style={{ width: "2em" }} alt="IBG Institute" />
           </Link>
-          <Typography variant="h6" component="div" sx={{ ml: 1 }}>
-            IBG Institute
-          </Typography>
+          {!isMobileScreen && (
+            <Typography variant="h6" component="div" sx={{ ml: 1 }}>
+              IBG Institute
+            </Typography>
+          )}
         </Box>
         {isMobileScreen ? (
           <Menu onClick={handleMobileMenuToggle} sx={{ cursor: "pointer" }} />
         ) : (
-          <Box
+          <Box // The web view menu is outside the Button component to keep it visible
             sx={{
               display: "flex",
-              alignItems: "right",
+              alignItems: "center",
             }}
           >
             <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginRight: "1.618rem" }}>
@@ -86,27 +88,33 @@ const Header: React.FC = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "right",
+            alignItems: "flex-end", // Align "X" icon to the right in mobile view
             marginTop: "1.618rem",
             marginBottom: "1.618rem",
           }}
         >
-          <Close onClick={handleMobileMenuToggle} sx={{ cursor: "pointer", marginBottom: "1.618rem" }} />
-          <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
-            Home
-          </Button>
-          <Button component={Link} to="/about" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
-            About
-          </Button>
-          <Button component={Link} to="/faqs" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
-            FAQs
-          </Button>
-          <Button component={Link} to="/blog" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
-            Blog
-          </Button>
-          <Button component={Link} to="/contact" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
-            Contact
-          </Button>
+          {isMobileScreen && ( // Show menu items only in mobile view
+            <>
+              <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
+                Home
+              </Button>
+              <Button component={Link} to="/about" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
+                About
+              </Button>
+              <Button component={Link} to="/faqs" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
+                FAQs
+              </Button>
+              <Button component={Link} to="/blog" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
+                Blog
+              </Button>
+              <Button component={Link} to="/contact" variant="contained" color="primary" sx={{ marginBottom: "1.618rem" }}>
+                Contact
+              </Button>
+            </>
+          )}
+          {!isMobileScreen && ( // Hide the icon in web view
+            <Close onClick={handleMobileMenuToggle} sx={{ cursor: "pointer", marginBottom: "1.618rem" }} />
+          )}
         </Box>
       )}
     </Box>
@@ -114,4 +122,5 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
 
