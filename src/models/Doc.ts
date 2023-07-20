@@ -37,6 +37,7 @@ export interface Doc {
   content: string;
   blogContent: Document;
   videoLink: string;
+  postVideoBlurb: Document;
 }
 
 export interface DocFields extends Doc {
@@ -62,6 +63,15 @@ export function docValidate(value: unknown): DocEntry {
   stringValidate(object.fields.title);
   stringValidate(object.fields.category);
   stringValidate(object.fields.summary);
-  stringValidate(object.fields.image);
+  stringValidate(object.fields.date);
+  objectValidate(object.fields.featuredImage);
+  objectValidate(object.fields.body);
+  objectValidate(object.fields.assets);
+  stringValidate(object.fields.author);
+  stringValidate(object.fields.content);
+  objectValidate(object.fields.blogContent);
+  stringValidate(object.fields.videoLink);
+  objectValidate(object.fields.postVideoBlurb);
+
   return value as DocEntry;
 }

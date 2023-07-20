@@ -5,13 +5,15 @@ import { EmailIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share'
 
 import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-import { MiniBlogCard, VideoPlayer } from '../../components/blog';
+import { MiniBlogCard } from '../../components/blog';
 import { fetchDoc } from '../../utils/fetchDoc';
 import { DocEntry } from '../../models/Doc';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import EmbeddedAsset from '../../components/blog/EmbeddedAsset';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import { fetchDocs } from '../../utils/fetchDocs';
+
+import  YouTube  from 'react-youtube';
 
 const BlogDetail: React.FC = () => {
   let { blogId } = useParams<{ blogId: string | undefined }>();
@@ -78,7 +80,7 @@ const BlogDetail: React.FC = () => {
           if (doc && doc.fields && doc.fields.videoLink) {
             console.log('videoLink', doc.fields.videoLink);
           }
-          
+
         } catch (err) {
           console.error(err);
         }
@@ -121,9 +123,10 @@ const BlogDetail: React.FC = () => {
           <Typography color="common.white" variant="h6" marginBottom={2}>by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
           {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
           {blog.fields.videoLink && 
-          <VideoPlayer src={blog.fields.videoLink} type="video/mp4" />
+           <YouTube videoId='HDLhHYlggWg' />
           }
-          <Box display="flex">
+             {blog.fields.postVideoBlurb && documentToReactComponents(blog.fields.postVideoBlurb, richTextOptions)}
+          <Box display="flex" marginTop="20px">
             <Typography color="common.white" marginRight="20px">
               Share:
             </Typography>
