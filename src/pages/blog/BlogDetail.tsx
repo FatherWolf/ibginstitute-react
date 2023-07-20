@@ -5,7 +5,7 @@ import { EmailIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share'
 
 import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-import MiniBlogCard from '../../components/blog/MiniBlogCard';
+import { MiniBlogCard, VideoPlayer } from '../../components/blog';
 import { fetchDoc } from '../../utils/fetchDoc';
 import { DocEntry } from '../../models/Doc';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -38,25 +38,25 @@ const BlogDetail: React.FC = () => {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p>{children}</p>
+        <Typography sx={{ color: 'common.white', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
-        <h1>{children}</h1>
+        <Typography variant="h1" sx={{ color: 'common.white', fontSize: '2rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
-        <h2>{children}</h2>
+        <Typography variant="h2" sx={{ color: 'common.white', fontSize: '1.8rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
-        <h3>{children}</h3>
+        <Typography variant="h3" sx={{ color: 'common.white', fontSize: '1.6rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_4]: (_node: any, children: React.ReactNode) => (
-        <h4>{children}</h4>
+        <Typography variant="h4" sx={{ color: 'common.white', fontSize: '1.4rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_5]: (_node: any, children: React.ReactNode) => (
-        <h5>{children}</h5>
+        <Typography variant="h5" sx={{ color: 'common.white', fontSize: '1.2rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.HEADING_6]: (_node: any, children: React.ReactNode) => (
-        <h6>{children}</h6>
+        <Typography variant="h6" sx={{ color: 'common.white', fontSize: '1rem', marginBottom: '20px' }}>{children}</Typography>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const assetId = node.data.target.sys.id;
@@ -74,6 +74,11 @@ const BlogDetail: React.FC = () => {
         try {
           const doc = await fetchDoc(blogId);
           setBlog(doc);
+  
+          if (doc && doc.fields && doc.fields.videoLink) {
+            console.log('videoLink', doc.fields.videoLink);
+          }
+          
         } catch (err) {
           console.error(err);
         }
@@ -113,11 +118,11 @@ const BlogDetail: React.FC = () => {
         <Grid item xs={12} md={8}>
           <EmbeddedAsset assetId={blog.fields.featuredImage.sys.id} style={{ width: '100%', objectFit: 'cover', marginBottom: 10, borderRadius: 8 }} />
           <Typography color="common.white" variant="h2" gutterBottom>{blog.fields.title}</Typography>
-          <Typography color="common.white" variant="h6">by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
-          <Typography color="common.white">
-            {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
-          </Typography>
-
+          <Typography color="common.white" variant="h6" marginBottom={2}>by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
+          {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
+          {blog.fields.videoLink && 
+          <VideoPlayer src={blog.fields.videoLink} type="video/mp4" />
+          }
           <Box display="flex">
             <Typography color="common.white" marginRight="20px">
               Share:
@@ -141,7 +146,7 @@ const BlogDetail: React.FC = () => {
         {!matches && (
           <Grid item xs={12} md={4}>
             <Typography color="common.white" variant="h4" align="center" gutterBottom>Recent Blogs</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {recentBlogEntries.map((blog) => (
                 <MiniBlogCard
                   key={blog.sys.id}

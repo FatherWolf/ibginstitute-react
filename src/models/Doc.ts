@@ -36,6 +36,7 @@ export interface Doc {
   author: string;
   content: string;
   blogContent: Document;
+  videoLink: string;
 }
 
 export interface DocFields extends Doc {
