@@ -137,10 +137,6 @@ const BlogDetail: React.FC = () => {
     return <div>Blog not found</div>;
   }
 
-
-  if (!blog) {
-    return <div>Blog not found</div>;
-  }
   return (
     <Box sx={{ bgcolor: 'primary.main', pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
