@@ -1,19 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { EmailShareButton, FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
-import { EmailIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
-
-import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { styled } from '@mui/system';
-import { MiniBlogCard } from '../../components/blog';
-import { fetchDoc } from '../../utils/fetchDoc';
-import { DocEntry } from '../../models/Doc';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  EmailIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon
+} from 'react-share';
+import YouTube from 'react-youtube';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import EmbeddedAsset from '../../components/blog/EmbeddedAsset';
-import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+
+import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { styled } from '@mui/system';
+
+import { DocEntry } from '../../models/Doc';
+import { fetchDoc } from '../../utils/fetchDoc';
 import { fetchDocs } from '../../utils/fetchDocs';
 
-import  YouTube  from 'react-youtube';
+import EmbeddedAsset from '../../components/blog/EmbeddedAsset';
+import { MiniBlogCard } from '../../components/blog';
+
 
 const BlogDetail: React.FC = () => {
   let { blogId } = useParams<{ blogId: string | undefined }>();
@@ -22,6 +32,7 @@ const BlogDetail: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const [recentBlogEntries, setRecentBlogEntries] = useState<DocEntry[]>([]);
+  const [videoId, setVideoId] = useState<string | undefined>(undefined);
 
   const InlineLink = styled('a')(({ theme }) => ({
     color: theme.palette.warning.main,
@@ -30,7 +41,6 @@ const BlogDetail: React.FC = () => {
       color: theme.palette.warning.dark,
     },
   }));
-
 
   const richTextOptions = {
     renderMark: {
@@ -76,9 +86,12 @@ const BlogDetail: React.FC = () => {
         try {
           const doc = await fetchDoc(blogId);
           setBlog(doc);
-  
+
           if (doc && doc.fields && doc.fields.videoLink) {
-            console.log('videoLink', doc.fields.videoLink);
+            // console.log('videoLink', doc.fields.videoLink);
+            const extractedVideoId = extractVideoId(doc.fields.videoLink);
+            // console.log('Extracted videoId:', extractedVideoId);
+            setVideoId(extractedVideoId);
           }
 
         } catch (err) {
@@ -110,10 +123,24 @@ const BlogDetail: React.FC = () => {
     navigate(`/blog/${blogId}`);
   };
 
+
+  function extractVideoId(url: string) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return (match && match[2].length === 11)
+      ? match[2]
+      : undefined;
+  }
+
   if (!blog) {
     return <div>Blog not found</div>;
   }
 
+
+  if (!blog) {
+    return <div>Blog not found</div>;
+  }
   return (
     <Box sx={{ bgcolor: 'primary.main', pl: [3, 5], pr: 3, pb: 3, pt: 3 }}>
       <Grid container spacing={4}>
@@ -122,10 +149,10 @@ const BlogDetail: React.FC = () => {
           <Typography color="common.white" variant="h2" gutterBottom>{blog.fields.title}</Typography>
           <Typography color="common.white" variant="h6" marginBottom={2}>by {blog.fields.author} on {new Date(blog.fields.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Typography>
           {blog.fields.blogContent && documentToReactComponents(blog.fields.blogContent, richTextOptions)}
-          {blog.fields.videoLink && 
-           <YouTube videoId='HDLhHYlggWg' />
+          {blog.fields.videoLink &&
+            <YouTube videoId={videoId} />
           }
-             {blog.fields.postVideoBlurb && documentToReactComponents(blog.fields.postVideoBlurb, richTextOptions)}
+          {blog.fields.postVideoBlurb && documentToReactComponents(blog.fields.postVideoBlurb, richTextOptions)}
           <Box display="flex" marginTop="20px">
             <Typography color="common.white" marginRight="20px">
               Share:
