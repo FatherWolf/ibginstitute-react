@@ -42,6 +42,13 @@ const BlogDetail: React.FC = () => {
     },
   }));
 
+  const StyledUl = styled('ul')(({ theme }) => ({
+    color: theme.palette.common.white,
+  }));
+
+  const StyledOl = styled('ol')(({ theme }) => ({
+    color: theme.palette.common.white,
+  }));
   const richTextOptions = {
     renderMark: {
       [MARKS.BOLD]: (text: React.ReactNode) => <strong>{text}</strong>,
@@ -77,6 +84,12 @@ const BlogDetail: React.FC = () => {
       [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
         <InlineLink href={node.data.uri}>{children}</InlineLink>
       ),
+      [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
+        <StyledUl>{children}</StyledUl>
+      ),
+      [BLOCKS.OL_LIST]: (_node: any, children: React.ReactNode) => (
+        <StyledOl>{children}</StyledOl>
+      )
     },
   };
 
