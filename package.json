@@ -25,6 +25,7 @@
     "react-scroll": "^1.8.9",
     "react-share": "^4.4.1",
     "react-toastify": "^9.1.3",
+    "react-youtube": "^10.1.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

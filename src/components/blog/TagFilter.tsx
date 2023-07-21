@@ -13,7 +13,8 @@ const categories = [
   'Tips & Tricks for Coding',
   'Project Showcase',
   'Language Spotlight',
-  'Technical'
+  'Technical',
+  'Podcast'
 ];
 
 
