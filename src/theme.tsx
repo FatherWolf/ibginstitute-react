@@ -25,10 +25,10 @@ const theme = createTheme({
     },
     common: {
       white: '#F5F5F5'
-      //smoke white color 
+      
     },
-   
-  },
+   // What should we add here? 
+ },
 });
 
 export default theme;
