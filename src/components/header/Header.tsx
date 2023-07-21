@@ -4,6 +4,7 @@ import { Box, Typography, Button, useMediaQuery, ThemeProvider, styled } from '@
 import { Menu, Close } from '@mui/icons-material';
 import logo from '../../assets/institute-icon.png';
 import theme, { blueColor} from '../../theme';
+import MobileMenu from './MobileMenu';
 // Extend the PaletteOptions interface to add custom properties
 declare module '@mui/material/styles/createPalette' {
   interface PaletteOptions {
@@ -102,23 +103,26 @@ return (
           }}
         >
           {isMobileScreen && ( // Show menu items only in mobile view
-            <>
-              <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-                Home
-              </Button>
-              <Button component={Link} to="/about" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-                About
-              </Button>
-              <Button component={Link} to="/faqs" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-                FAQs
-              </Button>
-              <Button component={Link} to="/blog" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-                Blog
-              </Button>
-              <Button component={Link} to="/contact" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-                Contact
-              </Button>
-            </>
+            // <>
+            //   <Button component={Link} to="/" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
+            //     Home
+            //   </Button>
+            //   <Button component={Link} to="/about" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
+            //     About
+            //   </Button>
+            //   <Button component={Link} to="/faqs" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
+            //     FAQs
+            //   </Button>
+            //   <Button component={Link} to="/blog" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
+            //     Blog
+            //   </Button>
+            //   <Button component={Link} to="/contact" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
+            //     Contact
+            //   </Button>
+            // </>
+            <MobileMenu message="Mobile Menu Will Go Here"/>
+
+
           )}
           {!isMobileScreen && ( // Hide the icon in web view
             <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
