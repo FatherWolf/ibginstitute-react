@@ -15,6 +15,7 @@ import BlogDetail from "./pages/blog/BlogDetail";
 import ContactForm from "./components/forms/ContactForm";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import Faq from "./pages/faq/Faq";
 
 const App: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ const App: React.FC = () => {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:blogId" element={<BlogDetail />} />
             <Route path="/contact" element={<ContactForm />} />
-            
+            <Route path="/faqs" element={<Faq />} />
           </Routes>
         </Box>
         <Footer />
