@@ -1,11 +1,21 @@
 import React from 'react';
-import { Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Typography, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useTheme } from '@mui/material/styles';
 
 const Faq: React.FC = () => {
+  const theme = useTheme();
+
   return (
-    <div>
-      <Typography variant="h2" align="center" gutterBottom>
+    <Box
+      sx={{
+        width: '100%',
+        padding: theme.spacing(2),
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.common.white,
+      }}
+    >
+      <Typography variant="h2" align="center" gutterBottom sx={{ color: theme.palette.secondary.main }}>
         FAQs
       </Typography>
 
@@ -14,11 +24,12 @@ const Faq: React.FC = () => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{ color: theme.palette.common.black }}
         >
           <Typography>Question 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: theme.palette.common.black }}>
             Answer to question 1...
           </Typography>
         </AccordionDetails>
@@ -29,18 +40,18 @@ const Faq: React.FC = () => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
+          sx={{ color: theme.palette.common.black }}
         >
           <Typography>Question 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: theme.palette.common.black }}>
             Answer to question 2...
           </Typography>
         </AccordionDetails>
       </Accordion>
 
-      {/* Add more accordions for each FAQ... */}
-    </div>
+    </Box>
   );
 }
 
