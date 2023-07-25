@@ -4,6 +4,7 @@ import HeroImage from "./components/heroImage/HeroImage"; // don't forget to imp
 import GetStartedForm from "../../components/forms/getStartedForm/GetStartedForm";
 import { Box } from '@mui/system'; // we'll use Box for more styling flexibility
 import InfoBlocks from "./components/infoblocks/InfoBlocks";
+import heroImg from '../../assets/ibghero.png';
 
 const Home: React.FC = () => {
   return (
@@ -17,7 +18,8 @@ const Home: React.FC = () => {
         </Typography>
       </Container>
       <br></br>
-      <Box sx={{ position: 'relative', width: '100%', height: '33.33vh' }}>
+      <Box sx={{ position: 'relative', width: '100%', height: '33.33vh', heroImg }}>
+        
         {/* Position the parent relative */}
         <HeroImage />
         <GetStartedForm />
