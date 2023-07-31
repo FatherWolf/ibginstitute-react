@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/system';
-import heroImg from '../../../../assets/ibghero.png'
+import heroImg from '../../../../assets/hero_img.jpg';
 const HeroImage: React.FC = () => {
   console.log([`heroImg`], heroImg);
   // testing to see this img here...
