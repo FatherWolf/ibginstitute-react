@@ -32,14 +32,13 @@ const Header: React.FC = () => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexDirection: isMobileScreen ? 'row' : 'row', // Keep it as row for both mobile and web view
   };
 
   const logoBoxStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: isMobileScreen ? '1.618rem' : 0,
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,16 +48,15 @@ const Header: React.FC = () => {
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <img src={institute} style={{ width: '2em' }} alt="IBG Institute" />
             </Link>
-            {!isMobileScreen && (
-              <Box sx={{ ml: 1, color: theme.palette.primary.main }}> 
-                <Typography variant="h6" component="div">
-                  IBG Institute
-                </Typography>
-              </Box>
-            )}
+            <Box sx={{ ml: 1, color: theme.palette.primary.main }}>
+              <Typography variant="h6" component="div">
+                IBG Institute
+              </Typography>
+            </Box>
+
           </Box>
           {isMobileScreen ? (
-            <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer' }} />
+            <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
           ) : (
             <Box // The web view menu is outside the Button component to keep it visible
               sx={{
