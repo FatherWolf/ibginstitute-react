@@ -39,7 +39,6 @@ const Header: React.FC = () => {
     alignItems: 'center',
   };
 
-
   return (
     <ThemeProvider theme={theme}>
       <Box sx={containerStyle}>
@@ -53,10 +52,14 @@ const Header: React.FC = () => {
                 IBG Institute
               </Typography>
             </Box>
-
           </Box>
           {isMobileScreen ? (
-            <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
+            // Display hamburger menu icon if MobileMenu is closed, and close icon if it's open
+            isMobileMenuOpen ? (
+              <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
+            ) : (
+              <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
+            )
           ) : (
             <Box // The web view menu is outside the Button component to keep it visible
               sx={{
@@ -93,15 +96,13 @@ const Header: React.FC = () => {
             }}
           >
             {isMobileScreen && (
-
-              <MobileMenu mobileMessage="Mobile Menu Will Go Here" /> // I want this to drop down outside of tyhe box: 
+              <MobileMenu mobileMessage="Mobile Menu Will Go Here" /> // I want this to drop down outside of tyhe box:
               /**
                * Home
                * About
                * FAQS
                * Contact
                */
-
             )}
             {!isMobileScreen && (
               <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
@@ -114,4 +115,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
