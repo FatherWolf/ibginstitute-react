@@ -43,7 +43,7 @@ const ContactForm: React.FC = () => {
     message: '',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -107,7 +107,7 @@ const ContactForm: React.FC = () => {
 
     // Form submission code would go here
 
-    setIsSubmitted(true);
+
     toast.success("Your message has been successfully submitted.");
 
     setValues({
@@ -127,9 +127,7 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  return isSubmitted ? (
-    <Typography variant="h6" align="center">Thank You! Your message has been successfully submitted.</Typography>
-  ) : (
+return (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
