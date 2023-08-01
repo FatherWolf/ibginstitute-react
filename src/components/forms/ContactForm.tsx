@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Grid, TextField, Box, Typography, Button, FormControlLabel, Checkbox } from '@mui/material';
-
+import ToastContainer from "../toasts/SuccessToast";
 interface FormState {
   name: string;
   email: string;
@@ -127,7 +127,7 @@ const ContactForm: React.FC = () => {
     });
   };
 
-return (
+  return (
     <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
@@ -201,6 +201,9 @@ return (
               Submit
             </Button>
           </Grid>
+          <ToastContainer />
+           
+          
         </Grid>
       </Box>
     </Box>
