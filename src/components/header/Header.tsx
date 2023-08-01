@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, useMediaQuery, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, useMediaQuery, ThemeProvider, Typography, Portal } from '@mui/material';
 import { Menu, Close } from '@mui/icons-material';
 import institute from '../../assets/institute-icon.png';
 import theme from '../../theme';
@@ -86,22 +86,27 @@ const Header: React.FC = () => {
           )}
         </Box>
         {isMobileMenuOpen && (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              marginTop: '1.618rem',
-              marginBottom: '1.618rem',
-            }}
-          >
-            {isMobileScreen && (
-              <MobileMenu isOpen={isMobileMenuOpen} onClick={handleMobileMenuToggle} />
-            )}
-            {!isMobileScreen && (
-              <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
-            )}
-          </Box>
+          <Portal>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                marginTop: '1.618rem',
+                marginBottom: '1.618rem',
+              }}
+            >
+              {isMobileScreen && (
+                <MobileMenu isOpen={isMobileMenuOpen} onClick={handleMobileMenuToggle} />
+              )}
+              {!isMobileScreen && (
+                <Close
+                  onClick={handleMobileMenuToggle}
+                  sx={{ cursor: 'pointer', marginBottom: '1.618rem' }}
+                />
+              )}
+            </Box>
+          </Portal>
         )}
       </Box>
     </ThemeProvider>
