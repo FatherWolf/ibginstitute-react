@@ -96,13 +96,7 @@ const Header: React.FC = () => {
             }}
           >
             {isMobileScreen && (
-              <MobileMenu mobileMessage="Mobile Menu Will Go Here" /> // I want this to drop down outside of tyhe box:
-              /**
-               * Home
-               * About
-               * FAQS
-               * Contact
-               */
+              <MobileMenu onClick={handleMobileMenuToggle} />
             )}
             {!isMobileScreen && (
               <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
