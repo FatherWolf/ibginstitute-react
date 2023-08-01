@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+export const blueColor = '#33577A';
+
 
 const theme = createTheme({
   palette: {
@@ -22,9 +24,11 @@ const theme = createTheme({
       main: '#4caf50', // Green color extra color
     },
     common: {
-      white: '#F5F5F5' //smoke white color 
-    }
-  },
+      white: '#F5F5F5'
+      
+    },
+   // What should we add here? 
+ },
 });
 
 export default theme;
