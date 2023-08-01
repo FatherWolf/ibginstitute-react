@@ -96,7 +96,7 @@ const Header: React.FC = () => {
             }}
           >
             {isMobileScreen && (
-              <MobileMenu onClick={handleMobileMenuToggle} />
+              <MobileMenu isOpen={isMobileMenuOpen} onClick={handleMobileMenuToggle} />
             )}
             {!isMobileScreen && (
               <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
