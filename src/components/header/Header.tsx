@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, useMediaQuery, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, useMediaQuery, ThemeProvider, Typography, Portal } from '@mui/material';
 import { Menu, Close } from '@mui/icons-material';
 import institute from '../../assets/institute-icon.png';
 import theme from '../../theme';
@@ -32,13 +32,11 @@ const Header: React.FC = () => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexDirection: isMobileScreen ? 'row' : 'row', // Keep it as row for both mobile and web view
   };
 
   const logoBoxStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: isMobileScreen ? '1.618rem' : 0,
   };
 
   return (
@@ -49,16 +47,19 @@ const Header: React.FC = () => {
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <img src={institute} style={{ width: '2em' }} alt="IBG Institute" />
             </Link>
-            {!isMobileScreen && (
-              <Box sx={{ ml: 1, color: theme.palette.primary.main }}> 
-                <Typography variant="h6" component="div">
-                  IBG Institute
-                </Typography>
-              </Box>
-            )}
+            <Box sx={{ ml: 1, color: theme.palette.primary.main }}>
+              <Typography variant="h6" component="div">
+                IBG Institute
+              </Typography>
+            </Box>
           </Box>
           {isMobileScreen ? (
-            <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer' }} />
+            // Display hamburger menu icon if MobileMenu is closed, and close icon if it's open
+            isMobileMenuOpen ? (
+              <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
+            ) : (
+              <Menu onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', alignSelf: 'center' }} />
+            )
           ) : (
             <Box // The web view menu is outside the Button component to keep it visible
               sx={{
@@ -85,30 +86,27 @@ const Header: React.FC = () => {
           )}
         </Box>
         {isMobileMenuOpen && (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              marginTop: '1.618rem',
-              marginBottom: '1.618rem',
-            }}
-          >
-            {isMobileScreen && (
-
-              <MobileMenu mobileMessage="Mobile Menu Will Go Here" /> // I want this to drop down outside of tyhe box: 
-              /**
-               * Home
-               * About
-               * FAQS
-               * Contact
-               */
-
-            )}
-            {!isMobileScreen && (
-              <Close onClick={handleMobileMenuToggle} sx={{ cursor: 'pointer', marginBottom: '1.618rem' }} />
-            )}
-          </Box>
+          <Portal>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                marginTop: '1.618rem',
+                marginBottom: '1.618rem',
+              }}
+            >
+              {isMobileScreen && (
+                <MobileMenu isOpen={isMobileMenuOpen} onClick={handleMobileMenuToggle} />
+              )}
+              {!isMobileScreen && (
+                <Close
+                  onClick={handleMobileMenuToggle}
+                  sx={{ cursor: 'pointer', marginBottom: '1.618rem' }}
+                />
+              )}
+            </Box>
+          </Portal>
         )}
       </Box>
     </ThemeProvider>
@@ -116,4 +114,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

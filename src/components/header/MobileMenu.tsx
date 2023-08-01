@@ -1,42 +1,75 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Typography, Slide, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface MobileProps {
-  mobileMessage: string;
+  isOpen: boolean;
+  onClick: () => void;
 }
 
-const MobileMenu: React.FC<MobileProps> = ({ mobileMessage }) => {
-  // Your existing code
+const MobileMenu: React.FC<MobileProps> = ({ isOpen, onClick }) => {
+  const menuStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: '4rem',
+    right: 0,
+    background: 'white',
+    borderRadius: '8px',
+    padding: '1rem',
+    width: '40%',
+    maxHeight: '80vh',
+    overflowY: 'auto',
+    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.25)',
+    transform: 'translateX(100%)',
+    transition: 'transform 0.3s ease-in-out',
+  };
+
+  const listStyle: React.CSSProperties = {
+    listStyle: 'none',
+  };
+
+  const StyledLink = styled(Link)(({ theme }) => ({
+    marginBottom: '1.618rem',
+    textDecoration: 'none',
+    color: 'inherit',
+    '&:active': {
+      color: theme.palette.secondary.main,
+      fontSize: '1.2em',
+    },
+  }));
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        marginTop: '1.618rem',
-        marginBottom: '1.618rem',
-      }}
-    >
-      {/* Use the mobileMessage prop here */}
-      <div>{mobileMessage}</div>
-      <Button component="a" href="/" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-        Home
-      </Button>
-      <Button component="a" href="/about" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-        About
-      </Button>
-      <Button component="a" href="/faqs" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-        FAQs
-      </Button>
-      <Button component="a" href="/blog" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-        Blog
-      </Button>
-      <Button component="a" href="/contact" variant="contained" color="primary" sx={{ marginBottom: '1.618rem' }}>
-        Contact
-      </Button>
-    </Box>
+    <Slide direction="left" in={isOpen} mountOnEnter unmountOnExit>
+      <Box sx={menuStyle}>
+        <ul style={listStyle}>
+          <li>
+            <Typography onClick={onClick} variant="body1" component={StyledLink} to="/">
+              Home
+            </Typography>
+          </li>
+          <li>
+            <Typography onClick={onClick} variant="body1" component={StyledLink} to="/about">
+              About
+            </Typography>
+          </li>
+          <li>
+            <Typography onClick={onClick} variant="body1" component={StyledLink} to="/faqs">
+              FAQs
+            </Typography>
+          </li>
+          <li>
+            <Typography onClick={onClick} variant="body1" component={StyledLink} to="/blog">
+              Blog
+            </Typography>
+          </li>
+          <li>
+            <Typography onClick={onClick} variant="body1" component={StyledLink} to="/contact">
+              Contact
+            </Typography>
+          </li>
+        </ul>
+      </Box>
+    </Slide>
   );
 };
 
 export default MobileMenu;
-
