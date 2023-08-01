@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import cardOne from '../../../../assets/card1.jpeg';
+import cardTwo from '../../../../assets/card2.jpeg';
+import cardThree from '../../../../assets/card3.jpeg';
 
 interface CardInfo {
   title: string;
@@ -10,9 +13,9 @@ interface CardInfo {
 }
 
 const cardsInfo: CardInfo[] = [
-  { title: "Card 1", subtext: "This is card 1", image: "https://via.placeholder.com/150", link: "/link1" },
-  { title: "Card 2", subtext: "This is card 2", image: "https://via.placeholder.com/150", link: "/link2" },
-  { title: "Card 3", subtext: "This is card 3", image: "https://via.placeholder.com/150", link: "/link3" },
+  { title: "Card 1", subtext: "This is card 1", image: cardOne, link: "/link1" },
+  { title: "Card 2", subtext: "This is card 2", image: cardTwo, link: "/link2" },
+  { title: "Card 3", subtext: "This is card 3", image: cardThree, link: "/link3" },
 ];
 
 const InfoBlocks: React.FC = () => {
