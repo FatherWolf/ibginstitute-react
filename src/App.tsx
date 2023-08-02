@@ -12,10 +12,11 @@ import BlogDetail from "./pages/blog/BlogDetail";
 
 /**Where is the import for the Faqs from the button click route? In Route path /="faqs" element={<FAQS />} */
 
-import ContactForm from "./components/forms/ContactForm";
+
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Faq from "./pages/faq/Faq";
+import Contact from "./pages/contact/Contact";
 
 const App: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:blogId" element={<BlogDetail />} />
-            <Route path="/contact" element={<ContactForm />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/faqs" element={<Faq />} />
           </Routes>
         </Box>
