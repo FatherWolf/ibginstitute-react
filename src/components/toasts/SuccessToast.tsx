@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +11,7 @@ async function open() {
 
 const SuccessToast = () => {
   const [myMessage, setMyMessage] = useState("");
+
 
   useEffect(() => {
     const fetchResponse = async () => {
@@ -29,6 +30,7 @@ const SuccessToast = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
   useEffect(() => {
     // Do nothing, don't display the toast message
   }, [myMessage]);
@@ -37,11 +39,11 @@ const SuccessToast = () => {
 
   return (
     <div>
+      
       <ToastContainer />
     </div>
   );
 }
 
 export default SuccessToast;
-
 
