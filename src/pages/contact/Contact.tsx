@@ -12,18 +12,18 @@ const Contact: React.FC = () => {
       </Typography>
       <Grid container justifyContent="center" alignItems="center" spacing={3}>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center">
-            <LocationOnIcon /> Charlotte, NC
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center">
+            <LocationOnIcon style={{ marginRight: '8px' }} /> Charlotte, NC
           </Typography>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center">
-            <EmailIcon /> info@ibginstitute.com
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center">
+            <EmailIcon style={{ marginRight: '8px' }} />info@ibginstitute.com
           </Typography>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center">
-            <PhoneIcon /> (980) 296-2699
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center">
+            <PhoneIcon style={{ marginRight: '8px' }} /> (980) 296-2699
           </Typography>
         </Grid>
       </Grid>
