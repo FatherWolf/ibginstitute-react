@@ -24,7 +24,7 @@ const SuccessToast = () => {
 
   return (
     <div>
-      <button onClick={handleSubmit}>Submit</button>
+      
       <ToastContainer />
     </div>
   );

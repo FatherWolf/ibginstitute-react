@@ -190,7 +190,6 @@ const ContactForm: React.FC = () => {
             />
             {errors.acceptTerms && <Typography color="error">{errors.acceptTerms}</Typography>}
           </Grid>
-          <Grid item xs={12}>
             <Button
               type="submit"
               variant="contained"
@@ -200,7 +199,7 @@ const ContactForm: React.FC = () => {
             >
               Submit
             </Button>
-          </Grid>
+        
           <ToastContainer />
            
           
