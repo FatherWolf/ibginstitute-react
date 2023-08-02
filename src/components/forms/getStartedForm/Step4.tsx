@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   Button,
   Grid,
@@ -46,11 +47,22 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
     setIsSubmitted(true);
   };
 
+  // TODO: Implement toast functionality
+  if (isSubmitted) {
+    toast.success('Your responses have been successfully submitted.', {
+      position: 'bottom-right',
+      autoClose: 3000,
+      // Add more options as needed based on the documentation of react-toastify
+    });
+  }
+
+  console.log('Your responses have been successfully submitted.'); // TODO: Log toast message
+
   return isSubmitted ? (
     <Grid container spacing={2} mb={3}>
       <Grid item xs={12} mt={3}>
         <Typography variant="h6" align="center">Thank You!</Typography>
-        <Typography variant="subtitle1" align="center">Your responses has been successfully submitted.</Typography>
+        <Typography variant="subtitle1" align="center">Your responses have been successfully submitted.</Typography>
       </Grid>
     </Grid>
   ) : (
@@ -104,6 +116,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Step4;
+

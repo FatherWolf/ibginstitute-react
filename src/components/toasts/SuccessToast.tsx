@@ -4,12 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Assuming 'open' is your own async function that fetches data from an API
 async function open() {
-  // Simulate form submission delay of 11 seconds (11000 milliseconds)
-  await new Promise(resolve => setTimeout(resolve, 11000));
-
   // ... implement your function that fetches data and returns it
   // For example purposes, this function returns a string
-  return "Thank you for choosing IBG!"; // Optional message for now... 
+  return "Thank you for choosing IBG!"; // Placeholder message for now...
 }
 
 const SuccessToast = () => {
@@ -18,8 +15,8 @@ const SuccessToast = () => {
   useEffect(() => {
     const fetchResponse = async () => {
       try {
-        const message = await open();
-        setMyMessage(message);
+        const placeholder = await open(); // TODO: `placeholder`
+        setMyMessage(placeholder); // Set the fetched message to the state variable
       } catch (error) {
         // Handle any errors that may occur during fetch
         console.error('Error fetching data:', error, myMessage);
@@ -29,18 +26,11 @@ const SuccessToast = () => {
     };
 
     fetchResponse();
-  }, [myMessage]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    // Display the toast with the fetched message when myMessage is not empty
-    if (myMessage) {
-      toast(myMessage, {
-        type: 'success',
-        autoClose:11533,
-        position: 'bottom-right',
-        // Add more options as needed based on the documentation of react-toastify
-      });
-    }
+    // Do nothing, don't display the toast message
   }, [myMessage]);
 
   console.log(myMessage);
@@ -53,7 +43,5 @@ const SuccessToast = () => {
 }
 
 export default SuccessToast;
-
-
 
 
