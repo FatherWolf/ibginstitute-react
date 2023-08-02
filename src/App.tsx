@@ -6,6 +6,8 @@ import About from "./pages/about/About";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/header/Header";
 import Blog from "./pages/blog/Blog";
+// import ToastContainer from "./components/toasts/SuccessToast";
+
 
 import BlogDetail from "./pages/blog/BlogDetail";
 
@@ -42,5 +44,3 @@ const App: React.FC = () => {
 }
 
 export default App;
-
-
