@@ -27,11 +27,21 @@ const Contact: React.FC = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Box maxWidth={600} margin="auto" marginTop={2} marginBottom={2}>
+      <Box
+        maxWidth={600}
+        margin="auto"
+        marginTop={{ xs: 2, lg: 3.5 }}
+        marginBottom={2}
+        sx={{
+          padding: { xs: 2, sm: 0 },
+          margin: { xs: 2, sm: 'auto' }
+        }}
+      >
         <Typography variant="body1" align="center">
           Our chatbot does its best, but we understand that some questions need a human touch. Drop us a message using the form below, and we'll assist you promptly.
         </Typography>
       </Box>
+
       <Box padding={3}>
         <ContactForm />
       </Box>
