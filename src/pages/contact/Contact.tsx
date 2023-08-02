@@ -13,7 +13,6 @@ const Contact: React.FC = () => {
         Our chatbot does its best, but we understand that some questions need a human touch. Drop us a message using the form below, and we'll assist you promptly.
       </Typography>
       <ContactForm />
-      <div id="chatbot"></div> Div for the chatbot script
     </Box>
   );
 };
