@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,26 +12,22 @@ async function close() {
 const SuccessToast = () => {
   const [myMessage, setMyMessage] = useState("");
 
-  useEffect(() => {
-    const fetchResponse = async () => {
-      const message = await close();
-      setMyMessage(message);
-
-      // Delay the display of toast by 3 seconds
-      setTimeout(() => toast(message), 3000);
-    };
-
-    fetchResponse();
-  }, []);
+  const handleSubmit = async () => {
+    const message = await close();
+    setMyMessage(message);
+    
+    // Show the toast immediately after submit
+    toast.success(message);
+  };
 
   console.log(myMessage);
 
   return (
     <div>
+      <button onClick={handleSubmit}>Submit</button>
       <ToastContainer />
     </div>
   );
 }
 
 export default SuccessToast;
-
