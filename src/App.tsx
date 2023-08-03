@@ -40,8 +40,9 @@ const App: React.FC = () => {
         <Footer />
       </Router>
     </Box>
-
+    <ToastContainer />
     </ThemeProvider>
+    
   );
 }
 
