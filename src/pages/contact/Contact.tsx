@@ -19,18 +19,18 @@ const Contact: React.FC = () => {
       </Typography>
       <Grid container justifyContent="center" alignItems="center" spacing={3}>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.info.main }}>
-            <LocationOnIcon style={{ marginRight: '8px', color: theme.palette.info.main }} /> Charlotte, NC
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.warning.main }}>
+            <LocationOnIcon style={{ marginRight: '8px', color: theme.palette.warning.main }} /> Charlotte, NC
           </Typography>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.info.main }}>
-            <EmailIcon style={{ marginRight: '8px', color: theme.palette.info.main }} />info@ibginstitute.com
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.success.main }}>
+            <EmailIcon style={{ marginRight: '8px', color: theme.palette.success.main }} />info@ibginstitute.com
           </Typography>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.info.main }}>
-            <PhoneIcon style={{ marginRight: '8px', color: theme.palette.info.main }} /> (980) 296-2699
+          <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center" sx={{ color: theme.palette.error.main }}>
+            <PhoneIcon style={{ marginRight: '8px', color: theme.palette.error.main }} /> (980) 296-2699
           </Typography>
         </Grid>
       </Grid>
