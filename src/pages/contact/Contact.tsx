@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
           <Typography variant="h6" align="center" display="flex" alignItems="center" justifyContent="center">
             <LocationOnIcon style={{ marginRight: '8px', color: theme.palette.warning.main }} />
             <a target="_blank" href={locationLink} style={{ display: 'block', textAlign: 'center', color: theme.palette.warning.main, textDecoration: 'none' }} rel="noreferrer">
-              Charlotte, NC
+              333 W. Trade St, Charlotte, NC
             </a>
           </Typography>
         </Grid>
