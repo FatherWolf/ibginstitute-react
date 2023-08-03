@@ -53,14 +53,7 @@ const Step4: React.FC<Step4Props> = ({ onBack, onSubmit, updateFormState }) => {
     });
   };
 
-  // TODO: Implement toast functionality
-  // if (isSubmitted) {
-  //   toast.success('Your responses have been successfully submitted.', {
-  //     position: 'bottom-right',
-  //     autoClose: 3000,
-  //     // Add more options as needed based on the documentation of react-toastify
-  //   });
-  // }
+
 
   console.log('Your responses have been successfully submitted.'); // TODO: Log toast message
 

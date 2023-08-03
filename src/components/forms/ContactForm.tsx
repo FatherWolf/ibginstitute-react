@@ -108,8 +108,13 @@ const ContactForm: React.FC = () => {
 
     // Form submission code would go here
 
-
-    toast.success("Your message has been successfully submitted.");
+    try {
+      // Your form handling code here...
+      toast.success("Your message has been successfully submitted.");
+    } catch (error) {
+      toast.error("An error occurred while submitting your message.");
+    }
+    // toast.success("Your message has been successfully submitted.");
 
     setValues({
       name: '',
@@ -202,7 +207,7 @@ const ContactForm: React.FC = () => {
             Submit
           </Button>
 
-          <ToastContainer />
+          {/* <ToastContainer /> */}
 
 
         </Grid>
