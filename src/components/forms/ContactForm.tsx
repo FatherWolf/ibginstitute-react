@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Grid, TextField, Box, Typography, Button, FormControlLabel, Checkbox } from '@mui/material';
-import ToastContainer from "../toasts/SuccessToast";
+
 import theme from '../../theme';
 interface FormState {
   name: string;
@@ -206,10 +206,6 @@ const ContactForm: React.FC = () => {
           >
             Submit
           </Button>
-
-          {/* <ToastContainer /> */}
-
-
         </Grid>
       </Box>
     </Box>
