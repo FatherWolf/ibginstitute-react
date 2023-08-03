@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Grid, TextField, Box, Typography, Button, FormControlLabel, Checkbox } from '@mui/material';
 import ToastContainer from "../toasts/SuccessToast";
+import theme from '../../theme';
 interface FormState {
   name: string;
   email: string;
@@ -128,9 +129,9 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
+    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2, backgroundColor: theme.palette.common.white }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
+        <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center', color: theme.palette.primary.main }}>
           Contact Us
         </Typography>
         <Grid container spacing={2}>
@@ -183,15 +184,13 @@ const ContactForm: React.FC = () => {
               helperText={errors.message}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ color: theme.palette.primary.main }} >
             <FormControlLabel
               control={<Checkbox color="primary" checked={values.acceptTerms} name="acceptTerms" onChange={handleCheck} />}
               label="I agree. By checking this box, you are opting-in to receive information from us."
             />
             {errors.acceptTerms && <Typography color="error">{errors.acceptTerms}</Typography>}
           </Grid>
-
-
 
           <Button
             type="submit"
@@ -204,6 +203,7 @@ const ContactForm: React.FC = () => {
           </Button>
 
           <ToastContainer />
+
 
         </Grid>
       </Box>

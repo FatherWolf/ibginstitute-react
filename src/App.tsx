@@ -10,31 +10,37 @@ import ToastContainer from "./components/toasts/SuccessToast";
 
 
 import BlogDetail from "./pages/blog/BlogDetail";
-import ContactForm from "./components/forms/ContactForm";
+
+
+/**Where is the import for the Faqs from the button click route? In Route path /="faqs" element={<FAQS />} */
+
+
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Faq from "./pages/faq/Faq";
+import Contact from "./pages/contact/Contact";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box display="flex" flexDirection="column" minHeight="100vh">
-        <Router>
-          <Header />
-          <Box flexGrow={1}>
-            <Routes>
-                <Route path="/about" element={<About />} />
-                <Route path="/" element={<Home />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:blogId" element={<BlogDetail />} />
-                <Route path="/contact" element={<ContactForm />} />
-                <Route path="/faqs" element={<Faq />} />
-            </Routes>
-            <ToastContainer />
-          </Box>
-          <Footer />
-        </Router>
-      </Box>
+
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Router>
+        <Header />
+        <Box flexGrow={1}>
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:blogId" element={<BlogDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faqs" element={<Faq />} />
+          </Routes>
+        </Box>
+        <Footer />
+      </Router>
+    </Box>
+
     </ThemeProvider>
   );
 }
