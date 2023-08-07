@@ -6,7 +6,7 @@ import About from "./pages/about/About";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/header/Header";
 import Blog from "./pages/blog/Blog";
-// import ToastContainer from "./components/toasts/SuccessToast";
+import ToastContainer from "./components/toasts/SuccessToast";
 
 
 import BlogDetail from "./pages/blog/BlogDetail";
@@ -23,6 +23,7 @@ import Contact from "./pages/contact/Contact";
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
+
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Router>
         <Header />
@@ -39,7 +40,9 @@ const App: React.FC = () => {
         <Footer />
       </Router>
     </Box>
+    <ToastContainer />
     </ThemeProvider>
+    
   );
 }
 
