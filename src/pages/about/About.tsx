@@ -47,18 +47,6 @@ const About: React.FC = () => {
             </p>
           </Typography>
         </div>
-        {/* YouTube video */}
-        <div className="video-container">
-          <iframe
-            title="TRAP Tech on the News Edit"
-            id="thim-video"
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/yUTuXqW803U"
-            allowFullScreen
-            style={{ border: 0 }}
-          />
-        </div>
 
       </div>
       {/* Meet The Team */}
@@ -67,11 +55,11 @@ const About: React.FC = () => {
       </Typography>
       <div className="team-members">
         {/* Add 5 equally spaced circle images here */}
-        <img className="team-member-image" src="person1.jpg" alt="Person 1" />
-        <img className="team-member-image" src="person2.jpg" alt="Person 2" />
-        <img className="team-member-image" src="person3.jpg" alt="Person 3" />
-        <img className="team-member-image" src="person4.jpg" alt="Person 4" />
-        <img className="team-member-image" src="person5.jpg" alt="Person 5" />
+        <img className="carousel-item" font-family="Helvetica Neue" alt="Person 1" />
+        <img className="carousel-item" font-family="Helvetica Neue" alt="Person 2" />
+        <img className="carousel-item" font-family="Helvetica Neue" alt="Person 3" />
+        <img className="carousel-item" font-family="Helvetica Neue" alt="Person 4" />
+        <img className="carousel-item" font-family="Helvetica Neue" alt="Person 5" />
       </div>
 
       <div>
@@ -83,6 +71,11 @@ const About: React.FC = () => {
             </p>
           </div>
         </div>
+        {/* YouTube video */}
+        <div className="video-container">
+
+        </div>
+
 
       </div>
 
