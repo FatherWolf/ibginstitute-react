@@ -74,13 +74,20 @@ const About: React.FC = () => {
         <img className="team-member-image" src="person5.jpg" alt="Person 5" />
       </div>
 
+      <div>
+        {/* In the About component */}
+        <div className="marquee-container">
+          <div className="marquee">
+            <p>
+              Wave Mobile Technology • Disney • IBG Software • Revolt.tv • Universal Music Group • Nonfungible.com • Zubloc • PGA Tour • Savgex Fenty • Wells Fargo • Bank of America • Federal Reserve Bank • Facebook • Google • Fis • Blue Cross Blue Shield • IBM • Oracle • Microsoft
+            </p>
+          </div>
+        </div>
+
+      </div>
 
     </Container>
   );
 };
 
 export default About;
-
-
-
-
