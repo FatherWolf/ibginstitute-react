@@ -39,11 +39,20 @@ const About: React.FC = () => {
         {/* Right Column */}
         <div className="right-column">
           <Typography variant="body1">
-            <h3>What we do:</h3>
+            <h2>What we do:</h2>
             <p>
               At our institute, we specialize in training engineers. Our programs are designed to support individuals from all backgrounds to achieve success in technology and software engineering, regardless of their economic or educational history. We provide a clear roadmap for our students and expect them to diligently execute within their given timeframes to complete all coursework.
-
               While we maintain an optimistic outlook, we do not sugarcoat the process. Completion of the coursework we provide is the key to success in today’s tech economy. Conversely, failure to finish or complete the work means that one is not yet ready to thrive in this industry. It’s as simple as that. We firmly believe that anyone can succeed if they apply themselves, and as such, our programs are self-paced and designed to produce results. We understand that each individual learns at their own pace, and we structure our programs accordingly.
+            </p>
+            <p>IBG Institute is about embracing the power of continuous learning in a rapidly evolving technological landscape. In today's economy, where change is constant and technology is advancing at an unprecedented pace, IBG Institute stands as a beacon of opportunity. It recognizes the growing fear of being left behind due to automation and the rise of AI, and it offers a transformative solution – continuous learning.
+
+              At its core, IBG Institute is dedicated to equipping individuals with the skills and knowledge needed to not just survive but thrive in the realm of web development, cloud computing, AI, and chatbot programming. The institute's fast-track program is designed to empower individuals through a rigorous 16-week journey of immersive learning, followed by an eight-week internship that solidifies newfound expertise.
+
+              IBG Institute understands that in this dynamic landscape, where what's cutting-edge today might be obsolete tomorrow, staying relevant is paramount. The institute's program ensures that individuals are always up-to-date with the latest technologies and industry trends, fostering adaptability to changing job requirements.
+
+              Moreover, IBG Institute goes beyond just skill acquisition – it cultivates a mindset of innovation and progress. By mastering pivotal technologies such as Amazon Web Services (AWS) and delving into the intricacies of identity and compliance modules, individuals gain the confidence to harness the full potential of technology, especially AI.
+
+              Ultimately, IBG Institute is about shaping pioneers. It's about fostering the driving force behind innovation, ensuring that its graduates are not just prepared for the future, but are the architects of it. Through continuous learning and mastery of cutting-edge technologies, IBG Institute empowers individuals to be the catalysts of progress, taking charge of their careers and shaping the ever-evolving technological landscape. The journey toward mastering the technologies of the future awaits at IBG Institute.
             </p>
           </Typography>
         </div>
@@ -71,9 +80,20 @@ const About: React.FC = () => {
             </p>
           </div>
         </div>
-        {/* YouTube video */}
-        <div className="video-container">
-
+        <div className="video-section">
+          {/* YouTube */}
+          <div className="video-container">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/your-video-id"
+              title="Your Video"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div className="video-container">
+          </div>
         </div>
 
 

@@ -117,22 +117,30 @@
 
 
 /* about.css */
-
 .video-section {
-  max-height: 400px; /* Set the maximum height of the video section container */
-  overflow: hidden; /* Hide any content that overflows the container */
-  margin-bottom: 20px; /* Optional margin at the bottom of the container */
+  offset: repeat(auto-fill, minmax(200px, 1fr)); 
+  padding: 2 2px;
+  gap: 100px;
+  
 }
 
 .video-container {
-  width: 100%; /* Ensure the video container takes the full width of its parent */
-  height: 100%; /* Ensure the video container takes the full height of its parent */
-  position: relative; /* Set the position to relative for absolute positioning of the video */
+  width: 100%;
+  border: 1px solid 'whitesmoke';
+  text-align: center; /* Center-aligns the contents horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
 }
+
 
 #thim-video {
-  position: absolute; /* Position the video absolutely within the container */
-  top: 0; /* Align the video to the top of the container */
-  left: 0; /* Align the video to the left of the container */
+  position: inline-flex;
+  padding: 100px;
+  /* Position the video absolutely within the container */
+  top: 0;
+  /* Align the video to the top of the container */
+  left: 0;
+  /* Align the video to the left of the container */
 }
-
