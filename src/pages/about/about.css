@@ -115,29 +115,26 @@
   }
 }
 
-
 /* about.css */
 .video-section {
-  offset: repeat(auto-fill, minmax(200px, 1fr)); 
-  padding: 2 2px;
-  gap: 100px;
-  
-}
-
-.video-container {
-  width: 100%;
-  border: 1px solid 'whitesmoke';
-  text-align: center; /* Center-aligns the contents horizontally */
+  width: 50%;
+  /* Adjust the width as needed */
+  margin: 0 auto;
+  /* Centers the section horizontally and adds margin top and bottom */
+  border: 1px solid #000;
+  /* Added border */
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh; /* Adjust the height as needed */
+  /* Centers the content horizontally */
+  aspect-ratio: calc(16 / 9);
+  /* Sets a 16:9 aspect ratio */
 }
+
+
 
 
 #thim-video {
   position: inline-flex;
-  padding: 100px;
   /* Position the video absolutely within the container */
   top: 0;
   /* Align the video to the top of the container */
