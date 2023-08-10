@@ -110,7 +110,11 @@ const ContactForm: React.FC = () => {
 
     try {
       // Your form handling code here...
-      toast.success("Your message has been successfully submitted.");
+      toast.success('Your message has been successfully submitted.', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        // Add more options as needed based on the documentation of react-toastify
+      });
     } catch (error) {
       toast.error("An error occurred while submitting your message.");
     }
