@@ -106,8 +106,7 @@ const ContactForm: React.FC = () => {
     setErrors(tempErrors);
     if (hasError) return;
 
-    // Form submission code would go here
-
+    // Form submission code would go here...
     try {
       // Your form handling code here...
       toast.success('Your message has been successfully submitted.', {
