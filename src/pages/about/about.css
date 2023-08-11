@@ -1,0 +1,143 @@
+/* About.css */
+
+.carousel-item {
+  color: #dbdbde;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.carousel-row {
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  height: 38px;
+  position: relative;
+}
+
+.carousel-track {
+  -webkit-animation: carousel-loop 40s linear infinite;
+  animation: carousel-loop 40s linear infinite;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.left-column {
+  background-color: 'whitesmoke';
+  /* Add your preferred background color */
+  flex: 1;
+  padding: 10px;
+}
+
+.marquee {
+  animation: scrollText 30s linear infinite;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.meet-the-team {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.quote-header {
+  color: #171A1FFF;
+  font-size: 24px;
+  margin: 30px 0;
+}
+
+.right-column {
+  background-color: 'whitesmoke';
+  /* Add your preferred background color */
+  flex: 1;
+  padding: 10px;
+}
+
+.rolling-carousel .carousel-row {
+  height: 60px;
+}
+
+.rolling-carousel .carousel-row+.carousel-row {
+  margin-top: 24px;
+}
+
+.rolling-carousel .carousel-row:nth-child(even) .carousel-track {
+  animation-direction: reverse;
+}
+
+.team-member-image {
+  border-radius: 50%;
+  height: 100px;
+  object-fit: cover;
+  width: 100px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.two-column-layout {
+  display: flex;
+}
+
+/* Keyframes for scrolling animation */
+@keyframes carousel-loop {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+  }
+
+  to {
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0)
+  }
+}
+
+/* Keyframes for scrolling animation */
+@keyframes scrollText {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* about.css */
+.video-section {
+  width: 50%;
+  /* Adjust the width as needed */
+  margin: 0 auto;
+  /* Centers the section horizontally and adds margin top and bottom */
+  border: 1px solid #000;
+  /* Added border */
+  display: flex;
+  justify-content: center;
+  /* Centers the content horizontally */
+  aspect-ratio: calc(16 / 9);
+  /* Sets a 16:9 aspect ratio */
+}
+
+
+
+
+#thim-video {
+  position: inline-flex;
+  /* Position the video absolutely within the container */
+  top: 0;
+  /* Align the video to the top of the container */
+  left: 0;
+  /* Align the video to the left of the container */
+}
