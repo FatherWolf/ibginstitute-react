@@ -1,4 +1,2 @@
-import { countries } from "./countries";
-
-export { countries };
-
+export { countries } from "./countries";
+export { faqData } from "./faqData";

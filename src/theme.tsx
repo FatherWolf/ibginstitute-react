@@ -7,6 +7,7 @@ const theme = createTheme({
     //our color palette but i think it needs to be adjusted 
     primary: {
       main: '#023047', // Dark blue color
+      light: '#0b4e73'
     },
     secondary: {
       main: '#219EBC', // teal color
