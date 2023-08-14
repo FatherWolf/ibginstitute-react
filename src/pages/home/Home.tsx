@@ -16,7 +16,7 @@ const Home: React.FC = () => {
           Your journey to knowledge begins here.
         </Typography>
       </Container>
-      <Box sx={{ position: 'relative', width: '100%', height: '33.33vh' }}> 
+      <Box sx={{ position: 'relative', width: '100%', height: '66.66vh' }}> 
         {/* Position the parent relative */}
         <HeroImage /> 
         <GetStartedForm /> 

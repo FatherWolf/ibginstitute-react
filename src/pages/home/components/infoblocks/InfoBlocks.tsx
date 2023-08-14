@@ -33,11 +33,11 @@ const InfoBlocks: React.FC = () => {
         textAlign: 'center'
       }}>
       {cardsInfo.map((card, i) => (
-        <Card key={i} sx={{ maxWidth: 345, boxShadow: 3 }} onMouseEnter={(event) => (event.currentTarget).style.boxShadow = '5px 5px 15px rgba(0,0,0,0.3)'} onMouseLeave={(event) => (event.currentTarget).style.boxShadow = 'none'}>
+        <Card key={i} sx={{ maxWidth: 280, boxShadow: 3, margin: '8px' }} onMouseEnter={(event) => (event.currentTarget).style.boxShadow = '5px 5px 15px rgba(0,0,0,0.3)'} onMouseLeave={(event) => (event.currentTarget).style.boxShadow = 'none'}>
           <CardActionArea onClick={() => handleClick(card.link)}>
             <CardMedia
               component="img"
-              height="140"
+              height="200" // Adjust image height as desired
               image={card.image}
               alt={card.title}
             />
@@ -57,3 +57,4 @@ const InfoBlocks: React.FC = () => {
 };
 
 export default InfoBlocks;
+
