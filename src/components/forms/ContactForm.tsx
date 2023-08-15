@@ -116,7 +116,7 @@ const ContactForm: React.FC = () => {
           "Email": values.email,
           "Phone": values.phone,
           "Message": values.message,
-          // "Date": (new Date()).toISOString().slice(0, -5).replace('T', ' ')
+          "Date": (new Date()).toISOString().slice(0, -5).replace('T', ' ')
         }
       }]);
 
