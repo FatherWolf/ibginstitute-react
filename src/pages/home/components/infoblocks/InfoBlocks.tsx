@@ -10,9 +10,9 @@ interface CardInfo {
 }
 
 const cardsInfo: CardInfo[] = [
-  { title: "Fast Track Crash Course", subtext: "Short Cycle", image: "https://via.placeholder.com/400", link: "/link1" },
-  { title: "Featured Fast Track Course", subtext: "Long Cycle", image: "https://via.placeholder.com/400", link: "/link2" },
-  // { title: "Card 3", subtext: "This is card 3", image: "https://via.placeholder.com/150", link: "/link3" },
+  { title: "Crash Course", subtext: "Short Cycle", image: "https://via.placeholder.com/400", link: "/link1" },
+  { title: "Fast Track ", subtext: "Full Payment", image: "https://via.placeholder.com/400", link: "/link2" },
+  { title: "Fast Track ", subtext: "Payment plan", image: "https://via.placeholder.com/400", link: "/link3" },
 ];
 
 const InfoBlocks: React.FC = () => {
