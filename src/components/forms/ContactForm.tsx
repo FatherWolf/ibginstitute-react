@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Grid, FormControlLabel, Checkbox } from '@mui/material';
+import { toast } from 'react-toastify';
+import { Grid, TextField, Box, Typography, Button, FormControlLabel, Checkbox } from '@mui/material';
 
-
+import theme from '../../theme';
 interface FormState {
   name: string;
   email: string;
@@ -17,7 +18,6 @@ interface ErrorState {
   message: string;
 }
 
-// repeated styling for inputs for name, email address, phone number
 const BottomBorderTextField = (props: any) => (
   <TextField
     variant="standard"
@@ -44,7 +44,7 @@ const ContactForm: React.FC = () => {
     message: '',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -71,11 +71,13 @@ const ContactForm: React.FC = () => {
     let tempErrors = { ...errors };
     let hasError = false;
 
+    // Validation code
+
     if (!values.name) {
       tempErrors.name = 'Full Name is required';
       hasError = true;
     }
-    // regex for email validation
+
     const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if (!values.email) {
       tempErrors.email = 'Email Address is required';
@@ -84,17 +86,18 @@ const ContactForm: React.FC = () => {
       tempErrors.email = 'Please provide a valid email address';
       hasError = true;
     }
-    // regex for US phone number validation, e.g. (123) 456-7890
-    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (values.phone && !phoneRegex.test(values.phone)) {
       tempErrors.phone = 'Please provide a valid phone eg. number xxx-xxx-xxxx';
       hasError = true;
     }
+
     if (!values.message) {
       tempErrors.message = 'Message is required';
       hasError = true;
     }
+
     if (!values.acceptTerms) {
       tempErrors.acceptTerms = 'You must accept the terms to proceed';
       hasError = true;
@@ -103,10 +106,19 @@ const ContactForm: React.FC = () => {
     setErrors(tempErrors);
     if (hasError) return;
 
-    // Handle the form submission here 
-    console.log('form values: ', values);
+    // Form submission code would go here...
+    try {
+      // Your form handling code here...
+      toast.success('Your message has been successfully submitted.', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        // Add more options as needed based on the documentation of react-toastify
+      });
+    } catch (error) {
+      toast.error("An error occurred while submitting your message.");
+    }
+    // toast.success("Your message has been successfully submitted.");
 
-    // reset form fields
     setValues({
       name: '',
       email: '',
@@ -115,7 +127,6 @@ const ContactForm: React.FC = () => {
       message: '',
     });
 
-    // reset error messages
     setErrors({
       name: '',
       email: '',
@@ -123,21 +134,12 @@ const ContactForm: React.FC = () => {
       acceptTerms: '',
       message: '',
     });
-
-    setIsSubmitted(true);
   };
 
-  return isSubmitted ? (
-    <Grid container spacing={2} mb={3}>
-      <Grid item xs={12} mt={3}>
-        <Typography variant="h6" align="center">Thank You!</Typography>
-        <Typography variant="subtitle1" align="center">Your message has been successfully submitted.</Typography>
-      </Grid>
-    </Grid>
-  ) : (
-    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2 }}>
+  return (
+    <Box sx={{ maxWidth: '475px', margin: 'auto', border: '1px solid black', borderRadius: 2, px: 3, py: 2, backgroundColor: theme.palette.common.white }}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Typography component="h1" variant="h4" sx={{ borderRadius: 2, mb: 2, textAlign: 'center' }}>
+        <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center', color: theme.palette.primary.main }}>
           Contact Us
         </Typography>
         <Grid container spacing={2}>
@@ -177,38 +179,36 @@ const ContactForm: React.FC = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              fullWidth
+            <BottomBorderTextField
               required
               id="message"
               label="Message"
               name="message"
-              value={values.message}
-              onChange={handleChange}
               multiline
               rows={4}
-              variant="standard"
+              value={values.message}
+              onChange={handleChange}
               error={Boolean(errors.message)}
               helperText={errors.message}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ color: theme.palette.primary.main }} >
             <FormControlLabel
               control={<Checkbox color="primary" checked={values.acceptTerms} name="acceptTerms" onChange={handleCheck} />}
-              label="I agree. By checking this box, you are opting-in to receive information from IBG Institute. You also agree to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida arcu sagittis erat posuere, et efficitur quam vestibulum. Ut iaculis vitae nibh eget congue."
+              label="I agree. By checking this box, you are opting-in to receive information from us."
             />
-            {errors.acceptTerms && <Typography textAlign="center" color="error">{errors.acceptTerms}</Typography>}
+            {errors.acceptTerms && <Typography color="error">{errors.acceptTerms}</Typography>}
           </Grid>
 
           <Button
             type="submit"
             variant="contained"
             color="primary"
+            disabled={!values.acceptTerms}
             sx={{ mt: 3, mb: 2, fontSize: '1.5rem', padding: '20px', mx: 'auto', width: '50%' }}
           >
             Submit
           </Button>
-
         </Grid>
       </Box>
     </Box>
@@ -216,3 +216,5 @@ const ContactForm: React.FC = () => {
 }
 
 export default ContactForm;
+
+
