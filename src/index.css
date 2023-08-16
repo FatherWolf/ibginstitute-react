@@ -7,8 +7,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.custom-card-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1px;
+  padding: 1px;
+  text-align: center;
+}
+
+@media screen and (min-width: 1000px) {
+  .custom-card-container {
+    gap: 1px; /* Increase the gap for larger screens */
+  }
+
+  .MuiCard-root {
+    width: calc(30% - 12px); /* Adjusted for about 20% larger width */
+  }
+  
+  @media screen and (min-width: 600px) {
+    .MuiCard-root {
+      width: calc(35% - 12px); /* Adjusted for about 20% larger width */
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    .MuiCard-root {
+      width: calc(40% - 16px); /* Adjusted for about 20% larger width */
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .MuiCard-root {
+      width: calc(45% - 16px); /* Adjusted for about 20% larger width */
+    }
+  }
+  
 }
 

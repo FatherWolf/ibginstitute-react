@@ -17,6 +17,9 @@ const Home: React.FC = () => {
           <p>This exceptional chance allows for immediate involvement, offering an enthralling and interactive platform to unveil the fascinating narrative behind the website and its enticing offerings.</p>
         </Typography>
       </Container>
+
+      <Box sx={{ position: 'relative', width: '100%', height: '66.66vh' }}> 
+
       <br></br>
       <Box 
         sx={{ 
@@ -28,6 +31,7 @@ const Home: React.FC = () => {
           backgroundPosition: 'center',  // this ensures the image is centered
         }}
       >
+
         {/* Position the parent relative */}
         <HeroImage />
         <GetStartedForm />
