@@ -10,9 +10,9 @@ interface CardInfo {
 }
 
 const cardsInfo: CardInfo[] = [
-  { title: "Card 1", subtext: "This is card 1", image: "https://via.placeholder.com/150", link: "/link1" },
-  { title: "Card 2", subtext: "This is card 2", image: "https://via.placeholder.com/150", link: "/link2" },
-  { title: "Card 3", subtext: "This is card 3", image: "https://via.placeholder.com/150", link: "/link3" },
+  { title: "Fast Track Crash Course", subtext: "Short Cycle", image: "https://via.placeholder.com/400", link: "/link1" },
+  { title: "Featured Fast Track Course", subtext: "Long Cycle", image: "https://via.placeholder.com/400", link: "/link2" },
+  // { title: "Card 3", subtext: "This is card 3", image: "https://via.placeholder.com/150", link: "/link3" },
 ];
 
 const InfoBlocks: React.FC = () => {
@@ -33,7 +33,17 @@ const InfoBlocks: React.FC = () => {
         textAlign: 'center'
       }}>
       {cardsInfo.map((card, i) => (
-        <Card key={i} sx={{ maxWidth: 280, boxShadow: 3, margin: '8px' }} onMouseEnter={(event) => (event.currentTarget).style.boxShadow = '5px 5px 15px rgba(0,0,0,0.3)'} onMouseLeave={(event) => (event.currentTarget).style.boxShadow = 'none'}>
+        <Card
+          key={i}
+          sx={{
+            width: 'calc(30% - 12px)', // Adjusted for about 20% larger width
+            maxWidth: 'none', // To prevent Material-UI's maxWidth from interfering
+            boxShadow: 3,
+            margin: '8px',
+          }}
+          onMouseEnter={(event) => (event.currentTarget).style.boxShadow = '5px 5px 15px rgba(0,0,0,0.3)'}
+          onMouseLeave={(event) => (event.currentTarget).style.boxShadow = 'none'}
+        >
           <CardActionArea onClick={() => handleClick(card.link)}>
             <CardMedia
               component="img"
@@ -57,4 +67,3 @@ const InfoBlocks: React.FC = () => {
 };
 
 export default InfoBlocks;
-
