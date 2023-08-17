@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Grid, TextField, Box, Typography, Button, FormControlLabel, Checkbox } from '@mui/material';
+import Airtable from 'airtable';
 
 import theme from '../../theme';
 interface FormState {
@@ -66,13 +67,12 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let tempErrors = { ...errors };
     let hasError = false;
 
     // Validation code
-
     if (!values.name) {
       tempErrors.name = 'Full Name is required';
       hasError = true;
@@ -106,34 +106,46 @@ const ContactForm: React.FC = () => {
     setErrors(tempErrors);
     if (hasError) return;
 
-    // Form submission code would go here...
+    // Airtable Submission Code:
     try {
-      // Your form handling code here...
+      const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API }).base('apprRYAyMzZMfKPLB');
+
+      await base('ContactUsResponses').create([{
+        "fields": {
+          "Full Name": values.name,
+          "Email": values.email,
+          "Phone": values.phone,
+          "Message": values.message,
+          "Date": (new Date()).toISOString().slice(0, -5).replace('T', ' ')
+        }
+      }]);
+
+      // Toast for successful submission
       toast.success('Your message has been successfully submitted.', {
         position: 'bottom-right',
         autoClose: 3000,
         // Add more options as needed based on the documentation of react-toastify
       });
+
+      setValues({
+        name: '',
+        email: '',
+        phone: '',
+        acceptTerms: false,
+        message: '',
+      });
+
+      setErrors({
+        name: '',
+        email: '',
+        phone: '',
+        acceptTerms: '',
+        message: '',
+      });
     } catch (error) {
-      toast.error("An error occurred while submitting your message.");
+      console.error("Error: ", error);
+      toast.error(`An error occurred while submitting your message: ${error}`);
     }
-    // toast.success("Your message has been successfully submitted.");
-
-    setValues({
-      name: '',
-      email: '',
-      phone: '',
-      acceptTerms: false,
-      message: '',
-    });
-
-    setErrors({
-      name: '',
-      email: '',
-      phone: '',
-      acceptTerms: '',
-      message: '',
-    });
   };
 
   return (
